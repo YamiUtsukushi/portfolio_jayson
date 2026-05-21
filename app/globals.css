@@ -1,26 +1,283 @@
 @import "tailwindcss";
 
+/* ============================================
+   DESIGN SYSTEM — Portfolio Jayson
+   Dark Luxury · Purple-Neon · Glassmorphism
+   ============================================ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Palette principale */
+  --color-primary:      #50207A;
+  --color-accent-soft:  #D6B9FC;
+  --color-accent-mid:   #838CE5;
+  --color-bg:           #0A0A0F;
+  --color-bg-card:      #12101A;
+  --color-text:         #EDE8FF;
+  --color-muted:        #7A7090;
+
+  /* Fonts */
+  --font-display: var(--font-syne), 'Syne', sans-serif;
+  --font-body:    var(--font-dm-sans), 'DM Sans', sans-serif;
+  --font-mono:    'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Glassmorphism tokens */
+  --glass-bg:     rgba(18, 16, 26, 0.6);
+  --glass-border: rgba(131, 140, 229, 0.15);
+  --glass-shadow: 0 8px 32px rgba(80, 32, 122, 0.2);
+  --glass-shadow-hover: 0 8px 48px rgba(80, 32, 122, 0.4);
+
+  /* Transitions */
+  --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: var(--color-bg);
+  --color-foreground: var(--color-text);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ============================================
+   RESET & BASE
+   ============================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Curseur custom — cacher le curseur natif sur desktop uniquement */
+@media (pointer: fine) {
+  body,
+  body * {
+    cursor: none !important;
+  }
+}
+
+/* Rétablir le curseur natif sur touch */
+@media (pointer: coarse) {
+  body,
+  body * {
+    cursor: auto !important;
+  }
+}
+
+/* Noise texture grain cinématique */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+
+@media (max-width: 768px) {
+  body::before {
+    opacity: 0.03;
+  }
+}
+
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  color: var(--color-text);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+p, span, li, a {
+  font-family: var(--font-body);
+}
+
+code, pre, kbd {
+  font-family: var(--font-mono);
+}
+
+/* ============================================
+   GLASSMORPHISM COMPONENTS
+   ============================================ */
+
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  box-shadow: var(--glass-shadow);
+  transition: border-color 0.3s var(--ease-smooth),
+              box-shadow 0.3s var(--ease-smooth);
+}
+
+.glass-card:hover {
+  border-color: rgba(131, 140, 229, 0.4);
+  box-shadow: var(--glass-shadow-hover);
+}
+
+/* ============================================
+   SCROLLBAR CUSTOM
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-mid);
+}
+
+/* ============================================
+   SÉLECTION DE TEXTE
+   ============================================ */
+
+::selection {
+  background: rgba(80, 32, 122, 0.6);
+  color: var(--color-accent-soft);
+}
+
+/* ============================================
+   RESPONSIVE — BREAKPOINTS
+   mobile  : < 600px
+   tablet  : 600px – 1024px
+   desktop : > 1024px
+   ============================================ */
+
+/* Hero — stats row */
+@media (max-width: 599px) {
+  .hero-stats-row {
+    gap: 0 !important;
+    padding-top: 1.25rem !important;
+  }
+  .hero-stat-item {
+    padding-right: 0.9rem !important;
+    margin-right: 0.9rem !important;
+  }
+  .hero-stat-value {
+    font-size: 1.1rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-stat-item {
+    padding-right: 0.65rem !important;
+    margin-right: 0.65rem !important;
+  }
+}
+
+/* Section paddings responsive */
+@media (max-width: 599px) {
+  .section-pad {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+}
+
+/* About — timeline dot */
+@media (max-width: 599px) {
+  .timeline-dot {
+    left: -1.6rem !important;
+  }
+}
+
+/* Tablet nav — ajustements */
+@media (max-width: 767px) {
+  .navbar-desktop {
+    display: none !important;
+  }
+}
+
+/* Cards glass — moins de blur sur mobile (perf) */
+@media (max-width: 599px) {
+  .glass-card {
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+  }
+}
+
+/* Disable 3D tilt sur touch */
+@media (pointer: coarse) {
+  .tilt-card {
+    transform: none !important;
+    transform-style: flat !important;
+  }
+  .tilt-card * {
+    transform: none !important;
+  }
+}
+
+/* ============================================
+   UTILITAIRES
+   ============================================ */
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-accent-soft) 0%, var(--color-accent-mid) 50%, var(--color-primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-border {
+  border: 1px solid transparent;
+  background-clip: padding-box;
+  position: relative;
+}
+
+.gradient-border::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent-mid));
+  z-index: -1;
+}
+
+/* Glow violet */
+.glow-violet {
+  box-shadow: 0 0 20px rgba(80, 32, 122, 0.5),
+              0 0 40px rgba(80, 32, 122, 0.2);
+}
+
+.glow-accent {
+  box-shadow: 0 0 20px rgba(131, 140, 229, 0.4),
+              0 0 60px rgba(131, 140, 229, 0.1);
+}
+
+/* Focus visible */
+:focus-visible {
+  outline: 2px solid var(--color-accent-mid);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
