@@ -115,7 +115,7 @@ const FORMATIONS = [
     school: 'Efficom Paris',
     location: 'Montrouge',
     period: '2020 — 2021',
-    level: 'Bac +3',
+    level: 'Bac +2',
     rncp: '',
     topics: ['Développement', 'Architecture'],
     color: '#7A7090',
