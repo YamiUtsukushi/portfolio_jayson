@@ -35,35 +35,6 @@ export default function ProjectDetailClient({ project }: Props) {
       }}
     >
       <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-        {/* Back button */}
-        <motion.div
-          variants={fadeInVariant}
-          initial="hidden"
-          animate="visible"
-          style={{ marginBottom: '3rem' }}
-        >
-          <Link href="/" style={{ textDecoration: 'none', display: 'inline-block' }}>
-            <motion.span
-              whileHover={{ x: -4 }}
-              transition={{ duration: 0.2 }}
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '8px',
-                fontFamily: 'var(--font-body)',
-                fontWeight: 500,
-                fontSize: '0.875rem',
-                color: 'var(--color-muted)',
-                transition: 'color 0.2s ease',
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--color-accent-mid)')}
-              onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--color-muted)')}
-            >
-              <ArrowLeft size={15} />
-              Retour aux projets
-            </motion.span>
-          </Link>
-        </motion.div>
 
         {/* HEADER */}
         <motion.div
@@ -412,7 +383,7 @@ export default function ProjectDetailClient({ project }: Props) {
             Je suis disponible pour collaborer.
           </p>
           <MagneticButton
-            href="mailto:jaymooken@gmail.com"
+            href="/contact"
             style={{
               display: 'inline-flex',
               alignItems: 'center',

@@ -14,7 +14,7 @@ import { navbarVariant, staggerContainer, navLinkVariant } from '@/lib/animation
 const NAV_LINKS = [
   { href: '/#projets', label: 'Projets' },
   { href: '/about', label: 'À propos' },
-  { href: '/#contact', label: 'Contact' },
+  { href: '/contact', label: 'Contact' },
 ];
 
 export default function Navbar() {

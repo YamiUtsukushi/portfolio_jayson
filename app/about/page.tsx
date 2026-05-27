@@ -33,12 +33,12 @@ const EXPERIENCES = [
     current: true,
     color: '#4ADE80',
     description:
-      'Réalisation de projets web pour des clients en tant que freelance. Développement front et back selon les besoins, livraison continue, grande autonomie technique.',
+      'Livraison de projets web complets pour des clients en totale autonomie — de la spécification à la mise en production, avec une exigence de qualité et un délai maîtrisé.',
     stack: ['React', 'Next.js', 'Node.js', 'TypeScript', 'Shopify'],
     highlights: [
-      'Développement de thèmes et apps Shopify sur mesure',
-      'Conception de SaaS et interfaces web complexes',
-      'Accompagnement technique de bout en bout',
+      'Livré 5+ thèmes et applications Shopify sur mesure (OS 2.0, cart drawer, mobile-first) de bout en bout — React · TypeScript · Liquid',
+      'Conçu et déployé des SaaS complets en autonomie totale, réduisant le délai concept-to-live à moins de 8 semaines par projet',
+      'Accompagnement technique end-to-end : spécification, développement, déploiement',
     ],
   },
   {
@@ -49,12 +49,12 @@ const EXPERIENCES = [
     current: false,
     color: '#838CE5',
     description:
-      'Conception "From Scratch" & Product Ownership — pilotage intégral de la création d\'un portail SaaS de gestion de projets, de la rédaction du cahier des charges à la mise en production.',
+      'Tech lead solo sur 2 ans — pilotage intégral de la création d\'un portail SaaS de gestion de projets, de la rédaction du cahier des charges à la mise en production.',
     stack: ['React', 'Node.js', 'PostgreSQL', 'Grafana', 'GitHub Actions'],
     highlights: [
-      'Création de la charte graphique et maquettes UI/UX',
-      'Transformation de l\'outil interne Nudge en SaaS client',
-      'Monitoring temps réel avec Grafana + Prometheus',
+      'Architecturé et livré un portail SaaS de gestion de projets from scratch, en pilotant l\'intégralité du stack (React · Node.js · PostgreSQL) en tant que tech lead solo sur 2 ans',
+      'Transformé l\'outil interne Nudge en SaaS client en concevant de nouvelles couches API et fonctionnalités, élargissant sa base utilisateurs au-delà de l\'équipe interne',
+      'Réduit le temps de détection d\'incidents en déployant un monitoring temps réel (Grafana · Prometheus) et des pipelines CI/CD automatisés (GitHub Actions)',
     ],
   },
   {
@@ -65,12 +65,12 @@ const EXPERIENCES = [
     current: false,
     color: '#D6B9FC',
     description:
-      'Développement d\'une application Shopify de gestion de coupons et personnalisation de thèmes e-commerce en Liquid.',
+      'Développement d\'une application Shopify de gestion de coupons à couverture nationale et personnalisation de thèmes e-commerce en Liquid.',
     stack: ['Shopify', 'Liquid', 'React', 'Node.js', 'PostgreSQL'],
     highlights: [
-      'App Shopify de gestion de coupons (couverture nationale)',
-      'Thèmes e-commerce custom : HTML, CSS, Liquid, JS',
-      'Base de données PostgreSQL pour distribution sécurisée',
+      'Développé et déployé une application Shopify de gestion de coupons à couverture nationale, gérant la distribution sécurisée sur des milliers de points de vente — Node.js · PostgreSQL',
+      'Livré 3+ thèmes e-commerce personnalisés en Liquid avec interfaces HTML/CSS/JS sur mesure, accélérant la mise en marché des vitrines clients',
+      'Conçu et maintenu une base de données PostgreSQL garantissant l\'intégrité et la traçabilité de la distribution des coupons, sans incident de données signalé',
     ],
   },
 ];
@@ -189,6 +189,11 @@ const HOBBIES = [
     title: 'Cuisiner',
     desc: 'Partager avec les autres — ma recette de l\'altruisme et du travail d\'équipe.',
   },
+  {
+    icon: '♟️',
+    title: 'Échecs',
+    desc: 'Stratégie, anticipation et patience — les mêmes qualités qu\'en architecture logicielle.',
+  },
 ];
 
 // ============================================
@@ -208,9 +213,6 @@ export default function AboutPage() {
         margin: '0 auto',
       }}
     >
-      {/* Back link */}
-      <BackLink />
-
       {/* Header */}
       <AboutHeader />
 
@@ -369,13 +371,13 @@ function AboutHeader() {
           margin: '0 0 2rem 0',
         }}
       >
-        Ingénieur Développeur FullStack{' '}
-        <strong style={{ color: 'var(--color-text)', fontWeight: 500 }}>Bac+5</strong>,
-        spécialisé dans la conception et le déploiement de produits{' '}
-        <strong style={{ color: 'var(--color-text)', fontWeight: 500 }}>SaaS</strong>.
-        De l'architecture de données à la création d'interfaces utilisateurs, je transforme
-        les besoins métiers en solutions robustes, scalables et performantes.
-        Habitué au <strong style={{ color: 'var(--color-accent-soft)', fontWeight: 500 }}>100% remote</strong>.
+        Ingénieur Développeur Full Stack avec 3 ans d&apos;expérience dans la conception et le déploiement de produits{' '}
+        <strong style={{ color: 'var(--color-text)', fontWeight: 500 }}>SaaS</strong>,
+        d&apos;applications web et de solutions e-commerce. Maîtrise de l&apos;ensemble de la chaîne de développement :
+        architecture, back-end (Node.js, Python, Java), front-end (React, Next.js, TypeScript) et DevOps (Docker, CI/CD).
+        Disponible rapidement pour une mission en{' '}
+        <strong style={{ color: 'var(--color-accent-soft)', fontWeight: 500 }}>CDI ou CDD</strong>{' '}
+        en Île-de-France ou full remote.
       </motion.p>
 
       {/* Contact pills */}

@@ -7,6 +7,7 @@ import NoiseBg from '@/components/ui/NoiseBg';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import PageTransition from '@/components/ui/PageTransition';
+import ScrollToTop from '@/components/ui/ScrollToTop';
 
 // ============================================
 // FONTS — Syne (titres) + DM Sans (corps)
@@ -73,6 +74,9 @@ export default function RootLayout({
         }}
         suppressHydrationWarning
       >
+        {/* Scroll to top à chaque changement de route */}
+        <ScrollToTop />
+
         {/* Curseur custom — desktop uniquement (CSS cursor:none déjà appliqué) */}
         <CustomCursor />
 
