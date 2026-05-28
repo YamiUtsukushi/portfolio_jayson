@@ -69,7 +69,6 @@ export default function Hero() {
         paddingLeft: 'clamp(1rem, 6vw, 6rem)',
         paddingRight: 'clamp(1rem, 4vw, 4rem)',
         position: 'relative',
-        overflow: 'hidden',
       }}
     >
       {/* Layout principal — deux colonnes */}
@@ -119,8 +118,8 @@ export default function Hero() {
           </motion.div>
 
           {/* Titre principal — asymétrique, pas centré */}
-          <div>
-            {/* Ligne 1 */}
+          <div style={{ position: 'relative', zIndex: 2 }}>
+            {/* Ligne 1 — langue qui change avec underline animé */}
             <motion.div
               variants={{
                 hidden: { opacity: 0, x: -40 },
@@ -132,32 +131,12 @@ export default function Hero() {
               style={{
                 fontFamily: 'var(--font-display)',
                 fontWeight: 800,
-                fontSize: 'clamp(2rem, 5vw, 4.2rem)',
-                color: 'var(--color-muted)',
-                letterSpacing: '-0.03em',
-                lineHeight: 1.1,
-              }}
-            >
-              Je parle couramment
-            </motion.div>
-
-            {/* Ligne 2 — langue qui change avec underline animé */}
-            <motion.div
-              variants={{
-                hidden: { opacity: 0, x: -40 },
-                visible: {
-                  opacity: 1, x: 0,
-                  transition: { duration: 0.7, ease: EASE_SMOOTH, delay: 0.2 },
-                },
-              }}
-              style={{
-                fontFamily: 'var(--font-display)',
-                fontWeight: 800,
                 fontSize: 'clamp(2.8rem, 7vw, 6rem)',
                 letterSpacing: '-0.04em',
-                lineHeight: 1.05,
+                lineHeight: 1.15,
                 position: 'relative',
-                display: 'inline-block',
+                display: 'block',
+                overflow: 'visible',
               }}
             >
               <AnimatePresence mode="wait">
@@ -198,26 +177,34 @@ export default function Hero() {
               />
             </motion.div>
 
-            {/* Ligne 3 */}
+            {/* Ligne 2 */}
             <motion.div
               variants={{
                 hidden: { opacity: 0, x: -40 },
                 visible: {
                   opacity: 1, x: 0,
-                  transition: { duration: 0.7, ease: EASE_SMOOTH, delay: 0.3 },
+                  transition: { duration: 0.7, ease: EASE_SMOOTH, delay: 0.2 },
                 },
               }}
-              style={{
-                fontFamily: 'var(--font-display)',
-                fontWeight: 800,
-                fontSize: 'clamp(1.6rem, 3.8vw, 3.2rem)',
-                color: 'var(--color-muted)',
-                letterSpacing: '-0.03em',
-                lineHeight: 1.2,
-              }}
             >
-              et rarement avec des bugs
-              <span style={{ color: 'var(--color-accent-mid)' }}>.</span>
+              <span
+                style={{
+                  display: 'block',
+                  fontFamily: 'var(--font-display)',
+                  fontWeight: 700,
+                  fontSize: 'clamp(1.1rem, 2.6vw, 2rem)',
+                  color: 'var(--color-muted)',
+                  letterSpacing: '-0.02em',
+                  lineHeight: 1.5,
+                  paddingBottom: '0.15em',
+                  maxWidth: '640px',
+                }}
+              >
+                m&apos;a appris que deux caractères mal placés peuvent ruiner une journée entière
+                <span style={{ color: 'var(--color-accent-mid)' }}>.</span>
+                {' '}J&apos;appelle ça du frisson
+                <span style={{ color: 'var(--color-accent-mid)' }}>.</span>
+              </span>
             </motion.div>
           </div>
 
