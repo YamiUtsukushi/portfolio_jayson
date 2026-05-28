@@ -226,7 +226,7 @@ export default function Hero() {
               maxWidth: '480px',
             }}
           >
-            Ingénieur Développeur <strong style={{ color: 'var(--color-text)', fontWeight: 500 }}>Full Stack</strong> avec
+            Ingénieur Développeur <strong style={{ color: 'var(--color-text)', fontWeight: 500 }}>Full Stack</strong>{' '}avec
             3 ans d&apos;expérience dans la conception et le déploiement de produits SaaS, d&apos;applications web et de
             solutions e-commerce. Maîtrise de l&apos;ensemble de la chaîne de développement : architecture, back-end
             (Node.js, Python, Java), front-end (React, Next.js, TypeScript) et DevOps (Docker, CI/CD). Disponible
