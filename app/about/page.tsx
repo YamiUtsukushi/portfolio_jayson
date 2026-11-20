@@ -26,98 +26,86 @@ import { fadeUpVariant, EASE_SMOOTH, EASE_OUT_EXPO } from '@/lib/animations';
 
 const EXPERIENCES = [
   {
-    title: 'Développeur FullStack Freelance',
-    company: 'Indépendant',
+    title: 'Développeur Full Stack — Freelance',
+    company: 'Freelance · 5 clients',
     period: 'Nov. 2025 — Aujourd\'hui',
     location: 'Île-de-France / Remote',
     current: true,
     color: '#4ADE80',
     description:
-      'Livraison de projets web complets pour des clients en totale autonomie — de la spécification à la mise en production, avec une exigence de qualité et un délai maîtrisé.',
-    stack: ['React', 'Next.js', 'Node.js', 'TypeScript', 'Shopify'],
+      'Boutiques Shopify et sites sur mesure pour 5 clients, de la maquette à la mise en ligne.',
+    stack: ['Shopify', 'Liquid', 'JavaScript', 'CSS', 'React', 'Next.js', 'Framer Motion'],
     highlights: [
-      'Livré 5+ thèmes et applications Shopify sur mesure (OS 2.0, cart drawer, mobile-first) de bout en bout — React · TypeScript · Liquid',
-      'Conçu et déployé des SaaS complets en autonomie totale, réduisant le délai concept-to-live à moins de 8 semaines par projet',
-      'Accompagnement technique end-to-end : spécification, développement, déploiement',
+      'Livré 4 boutiques Shopify sur mesure pour 4 clients (high-tech, ustensiles de cuisine, objets relaxants, coussins de grossesse) : thèmes Online Store 2.0 personnalisés, cart drawer, mobile-first, de la maquette à la mise en ligne — Liquid · JavaScript · CSS',
+      'Conçu et déployé un portfolio sur mesure pour un client (animations, UI personnalisée) — React · Next.js · Framer Motion',
     ],
   },
   {
-    title: 'Développeur FullStack',
+    title: 'Développeur Full Stack — Alternance (Master)',
     company: 'Atakama Technologies',
     period: 'Oct. 2023 — Sept. 2025',
-    location: 'La Ciotat (Remote)',
+    location: 'La Ciotat · Remote',
     current: false,
     color: '#838CE5',
     description:
-      'Tech lead solo sur 2 ans — pilotage intégral de la création d\'un portail SaaS de gestion de projets, de la rédaction du cahier des charges à la mise en production.',
-    stack: ['React', 'Node.js', 'PostgreSQL', 'Grafana', 'GitHub Actions'],
+      'Portail d\'observabilité intégré à Grafana développé from scratch, évolution de l\'outil Nudge en SaaS et automatisation du déploiement.',
+    stack: ['React', 'Node.js', 'Express', 'PostgreSQL', 'Grafana', 'Docker', 'GitHub Actions', 'Ansible'],
     highlights: [
-      'Architecturé et livré un portail SaaS de gestion de projets from scratch, en pilotant l\'intégralité du stack (React · Node.js · PostgreSQL) en tant que tech lead solo sur 2 ans',
-      'Transformé l\'outil interne Nudge en SaaS client en concevant de nouvelles couches API et fonctionnalités, élargissant sa base utilisateurs au-delà de l\'équipe interne',
-      'Réduit le temps de détection d\'incidents en déployant un monitoring temps réel (Grafana · Prometheus) et des pipelines CI/CD automatisés (GitHub Actions)',
+      'Conçu et développé from scratch le portail full stack intégré à Grafana : 15 fonctionnalités, ~600 commits, en production',
+      'Fait évoluer l\'outil interne Nudge vers une offre SaaS client en développant de nouvelles API REST et fonctionnalités',
+      'Automatisé le build et le déploiement des applications (GitHub Actions, Docker, Ansible) : mise en production à chaque push sur main, sans intervention manuelle ; mis en place un monitoring Grafana pour détecter plus tôt les incidents',
     ],
   },
   {
-    title: 'Développeur FullStack',
+    title: 'Développeur Full Stack — Alternance (Bachelor)',
     company: 'L3M-Holding',
     period: 'Oct. 2022 — Sept. 2023',
     location: 'Rosny-sous-Bois',
     current: false,
     color: '#D6B9FC',
     description:
-      'Développement d\'une application Shopify de gestion de coupons à couverture nationale et personnalisation de thèmes e-commerce en Liquid.',
-    stack: ['Shopify', 'Liquid', 'React', 'Node.js', 'PostgreSQL'],
+      'Application Shopify de gestion de coupons à couverture nationale et thèmes e-commerce sur mesure.',
+    stack: ['Shopify', 'Node.js', 'PostgreSQL', 'Liquid', 'HTML', 'CSS', 'JavaScript'],
     highlights: [
-      'Développé et déployé une application Shopify de gestion de coupons à couverture nationale, gérant la distribution sécurisée sur des milliers de points de vente — Node.js · PostgreSQL',
-      'Livré 3+ thèmes e-commerce personnalisés en Liquid avec interfaces HTML/CSS/JS sur mesure, accélérant la mise en marché des vitrines clients',
-      'Conçu et maintenu une base de données PostgreSQL garantissant l\'intégrité et la traçabilité de la distribution des coupons, sans incident de données signalé',
+      'Développé et déployé une application Shopify de gestion de coupons à couverture nationale — Node.js · PostgreSQL',
+      'Modélisé et maintenu la base PostgreSQL garantissant l\'unicité et la traçabilité de chaque coupon',
+      'Livré 3 thèmes e-commerce sur mesure — Liquid · HTML · CSS · JavaScript',
     ],
   },
 ];
 
 const FORMATIONS = [
   {
-    degree: 'Mastère Expert en Systèmes d\'Information',
-    specialty: 'Chef de projet IA et DATA',
+    degree: 'Master Chef de Projet Data, IA & DevOps',
+    specialty: 'Mention Très Bien (18/20)',
     school: 'Nexa Digital School',
     location: 'Paris',
     period: '2023 — 2025',
     level: 'Bac +5',
     rncp: 'Titre RNCP niveau 7',
-    topics: ['DevOps', 'Cloud', 'IA', 'SCRUM'],
+    topics: ['Data', 'IA', 'DevOps'],
     color: '#D6B9FC',
   },
   {
     degree: 'Bachelor Concepteur Développeur d\'Applications',
-    specialty: '',
-    school: 'Doranco École Sup\' des Tech Créatives',
-    location: 'Bagnolet, Île-de-France',
+    specialty: 'Dont le titre Développeur d\'Applications PGI/ERP',
+    school: 'Doranco — École Sup\' des Tech Créatives',
+    location: 'Bagnolet',
     period: '2022 — 2023',
     level: 'Bac +3/4',
     rncp: 'Titre RNCP niveau 6',
-    topics: ['Java', 'React', 'Node.js'],
+    topics: ['Développement d\'applications', 'PGI / ERP'],
     color: '#838CE5',
   },
   {
-    degree: 'Développeur d\'applications informatiques PGI / ERP',
-    specialty: '',
-    school: 'Doranco École Sup\' des Tech Créatives',
-    location: 'Bagnolet, Île-de-France',
-    period: '2022',
-    level: 'Bac +2',
-    rncp: 'Titre RNCP niveau 5',
-    topics: ['ERP', 'PGI', 'Java'],
-    color: '#50207A',
-  },
-  {
-    degree: 'Bachelor Expert en informatique',
+    degree: 'BTS SIO option SISR',
     specialty: '',
     school: 'Efficom Paris',
     location: 'Montrouge',
     period: '2020 — 2021',
     level: 'Bac +2',
     rncp: '',
-    topics: ['Développement', 'Architecture'],
+    topics: ['Linux / Windows', 'Réseaux', 'pfSense', 'VPN'],
     color: '#7A7090',
   },
 ];
@@ -174,8 +162,8 @@ const SOFT_SKILLS = [
 
 const LANGUAGES = [
   { lang: 'Créole', level: 'Langue maternelle', pct: 100, color: '#4ADE80' },
-  { lang: 'Français', level: 'Courant', pct: 98, color: '#838CE5' },
-  { lang: 'Anglais', level: 'B1+', pct: 55, color: '#D6B9FC' },
+  { lang: 'Français', level: 'Langue maternelle', pct: 100, color: '#838CE5' },
+  { lang: 'Anglais', level: 'B2', pct: 65, color: '#D6B9FC' },
 ];
 
 const HOBBIES = [
@@ -371,13 +359,13 @@ function AboutHeader() {
           margin: '0 0 2rem 0',
         }}
       >
-        Ingénieur Développeur Full Stack avec 3 ans d&apos;expérience dans la conception et le déploiement de produits{' '}
-        <strong style={{ color: 'var(--color-text)', fontWeight: 500 }}>SaaS</strong>,
-        d&apos;applications web et de solutions e-commerce. Maîtrise de l&apos;ensemble de la chaîne de développement :
-        architecture, back-end (Node.js, Python, Java), front-end (React, Next.js, TypeScript) et DevOps (Docker, CI/CD).
-        Disponible rapidement pour une mission en{' '}
+        Développeur Full Stack (Bac+5, mention Très Bien) : 3 ans d&apos;alternance et 1 an de freelance. Je livre des
+        applications web du front React à l&apos;API Node.js/PostgreSQL jusqu&apos;à la mise en production (Docker,
+        GitHub Actions, Ansible). Réalisation phare : un{' '}
+        <strong style={{ color: 'var(--color-text)', fontWeight: 500 }}>portail d&apos;observabilité intégré à Grafana</strong>,
+        développé from scratch et déployé en continu. Recherche un{' '}
         <strong style={{ color: 'var(--color-accent-soft)', fontWeight: 500 }}>CDI ou CDD</strong>{' '}
-        en Île-de-France ou full remote.
+        en Île-de-France ou remote.
       </motion.p>
 
       {/* Contact pills */}
