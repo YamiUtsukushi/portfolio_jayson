@@ -107,24 +107,72 @@ En chiffres
     slug: 'sneakers-shop-react',
     title: 'Sneakers Shop React',
     shortDescription:
-      'E-commerce complet avec authentification par rôles, panier, favoris, dark mode et dashboard admin.',
-    longDescription: `Une boutique e-commerce React construite de A à Z — avec une véritable gestion des rôles utilisateur (admin / client), panier persistant, liste de favoris et dark mode natif.
+      'Boutique de sneakers en React : deux rôles (client / admin), catalogue filtrable, panier, checkout en 3 étapes, favoris, dark mode et back-office.',
+    longDescription: `KICKS est une boutique de sneakers en ligne développée en React 18 avec Vite. Le projet est né en 2023 comme un simple catalogue, puis je l'ai entièrement refondu en 2026 pour en faire une application e-commerce complète, avec un parcours client de la recherche à la commande et un back-office administrateur. C'est une application 100 % front-end : les produits viennent d'un fichier JSON, les comptes et les commandes sont simulés, et l'état est persisté dans le localStorage.
 
-Fonctionnalités clés :
-• Auth par rôles (admin / client) avec React Context API
-• Panier et favoris avec persistance d'état
-• Dashboard admin : gestion des produits, commandes, utilisateurs
-• Dark mode complet avec toggle animé
-• Interface responsive, animations fluides
+L'objectif
 
-Stack technique : React 18, Vite, Context API, CSS Modules.`,
-    tags: ['React 18', 'Vite', 'Context API', 'JavaScript'],
+Construire un e-commerce réaliste sans back-end, pour travailler l'architecture d'une application React de taille moyenne : routage protégé par rôle, état global partagé entre de nombreux écrans, persistance côté client et design system cohérent en mode clair comme en mode sombre.
+
+Authentification et rôles
+
+• Page de connexion comme point d'entrée unique, avec deux comptes de démonstration : admin et client
+• Redirection automatique selon le rôle après connexion, et dès l'arrivée si la session existe déjà
+• Composant ProtectedRoute réutilisable : toutes les pages exigent d'être connecté, le dashboard exige le rôle admin
+• Session persistée dans le localStorage, sans jamais y stocker le mot de passe
+
+Parcours client
+
+• Catalogue de 14 sneakers en grille responsive, avec pages Homme et Femme (articles mixtes inclus)
+• Recherche par nom ou par marque, en temps réel
+• Filtres combinables : prix maximum, note minimale, en stock uniquement, plus un bouton de réinitialisation
+• Tri par prix croissant ou décroissant et par meilleures notes
+• Skeleton loaders pendant le chargement du catalogue
+• Fiche produit : galerie avec miniatures cliquables, note en étoiles, stock disponible, sélection de taille obligatoire avant l'ajout au panier
+• Favoris avec compteur dans la navbar et page dédiée
+
+Panier et commande
+
+• Panier : quantités modifiables, suppression d'un article, vider le panier, sous-total et total en direct
+• Livraison offerte dès 100 €, avec un message indiquant le montant restant
+• Checkout en 3 étapes avec stepper : livraison, paiement simulé (formatage automatique du numéro de carte), confirmation
+• Récapitulatif de commande affiché tout au long du tunnel
+
+Back-office administrateur
+
+• Layout dédié avec sidebar, et menu burger sur mobile
+• KPIs : nombre d'articles, ruptures de stock, chiffre d'affaires simulé, commandes en attente
+• Catalogue : tableau complet avec ajout, modification et suppression d'articles via un formulaire (tailles, catégorie, mise en ligne, images)
+• Gestion des stocks : ajustement + / − par article, statuts Rupture / Faible / OK
+• Commandes : liste simulée avec statuts colorés
+
+Architecture
+
+• React Router 6 : routes publiques, routes protégées et redirection par rôle, page 404 qui renvoie vers l'accueil adapté au rôle
+• Trois contextes : AuthContext (session et rôle), ShopContext (panier et favoris), ThemeContext (mode sombre)
+• Panier et favoris gérés par un useReducer avec des actions explicites (CART_ADD, CART_UPDATE_QUANTITY, FAVORITES_TOGGLE…)
+• Persistance du panier, des favoris, de la session et du thème dans le localStorage, avec hydratation au démarrage
+• Calculs dérivés (total, nombre d'articles, liste filtrée) mémoïsés avec useMemo
+• Design system en CSS custom properties, qui permet de basculer tout le site en mode sombre via un simple attribut data-theme
+
+UX et responsive
+
+• Interface épurée, adaptée au mobile, à la tablette et au desktop
+• Dark mode complet sur toute la partie client, mémorisé d'une visite à l'autre
+• États vides soignés (panier vide, aucun favori, aucun résultat) avec un appel à l'action
+• Retours visuels immédiats : confirmation d'ajout au panier, message d'erreur si aucune taille n'est choisie
+
+Pour tester
+
+• Client : user / user123
+• Administrateur : admin / admin123`,
+    tags: ['React 18', 'Vite', 'React Router 6', 'Context API', 'useReducer', 'JavaScript', 'CSS3'],
     category: 'web',
     status: 'deployed',
     githubUrl: 'https://github.com/YamiUtsukushi/sneakers-shop-react',
     liveUrl: 'https://sneakers-shop-react.netlify.app/',
     image: '/images/projects/sneakers-shop-react.jpg',
-    year: 2024,
+    year: 2026,
     featured: true,
   },
 
