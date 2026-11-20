@@ -180,23 +180,79 @@ Pour tester
     slug: 'shopify-theme-idhightech',
     title: 'Shopify Theme — iDhighTech2',
     shortDescription:
-      'Thème Shopify Online Store 2.0 pour boutique high-tech, basé sur Dawn avec sections et composants custom.',
-    longDescription: `Thème Shopify Online Store 2.0 développé pour une boutique high-tech — construit sur Dawn avec une personnalisation avancée en Liquid, CSS et JavaScript.
+      'Thème Shopify Online Store 2.0 sur mesure pour une boutique high-tech : 14 sections custom, fiche produit refondue, flash sale avec timers et recherche prédictive.',
+    longDescription: `Thème Shopify Online Store 2.0 conçu pour une boutique high-tech (composants gaming, audio, smartphones, accessoires). Je suis parti du thème Dawn de Shopify et je l'ai profondément personnalisé : 14 sections développées sur mesure, une fiche produit entièrement refondue, et des pages collection, recherche et panier restylées pour une identité visuelle cohérente. Tout est configurable depuis l'éditeur de thème Shopify, sans toucher au code.
 
-Fonctionnalités clés :
-• Architecture Online Store 2.0 : sections et blocs configurables
-• Composants custom : hero produit, bannières promo, fiches techniques
-• Optimisation performance : lazy loading, images srcset, scripts différés
-• Full responsive mobile-first
-• Intégration native des apps Shopify (reviews, upsells, etc.)
+L'objectif
 
-Stack technique : Liquid, Shopify CLI, JavaScript, CSS3.`,
-    tags: ['Shopify', 'Liquid', 'JavaScript', 'CSS3'],
+Donner à une boutique tech une vitrine qui pousse à l'achat : mettre en avant les promotions avec des comptes à rebours, présenter chaque produit avec des visuels et des vidéos, et laisser le marchand tout personnaliser lui-même, produit par produit, grâce aux metafields.
+
+Fiche produit refondue
+
+• Galerie custom : grande image principale et vignettes horizontales paginées (+N), qui reste fixe à gauche pendant le scroll des infos sur desktop
+• Badges automatiques : NEW pour un produit de moins de 30 jours, X% OFF calculé depuis le prix barré
+• Timer flash-sale relié à un metafield produit, partagé avec la section Flash Sale
+• Zone d'achat optimisée : quantité et Ajouter au panier sur la même ligne, Acheter maintenant en pleine largeur
+• Bandeau de 4 avantages configurables (offres du jour, retours, paiement, aide)
+• FAQ en accordéon avec 3 sections par défaut, remplaçables produit par produit via metafields
+
+Section Product Highlights
+
+• 4 cartes en grille asymétrique : une grande à gauche, une large en haut à droite, deux petites en bas
+• Vidéo YouTube, Vimeo ou MP4 détectée automatiquement à partir de l'URL
+• 20 metafields produit (image, vidéo, titre, sous-titre et lien pour chaque carte), avec repli sur les valeurs du customizer si un champ est vide
+• Taille, couleur et graisse du texte réglables carte par carte
+
+Flash Sale et promotions
+
+• Carrousel horizontal des produits en promotion, chacun avec son propre compte à rebours lu depuis un metafield
+• Bannière Deal Of The Day avec un timer principal
+• Défilement par glisser-déposer à la souris sur desktop et au doigt sur mobile
+• Barre d'annonces qui fait défiler plusieurs messages automatiquement
+
+Page d'accueil
+
+• Hero Slider avec slides configurables et défilement automatique réglable
+• Bandeau de marques en défilement continu, avec une cascade de logos : fichier local, puis logo Simple Icons généré à partir du nom de la marque, puis texte en dernier recours
+• Sections Shop By Categories, Produits en vedette et Barre d'avantages
+• Avis clients en défilement continu (marquee CSS en boucle infinie)
+
+Navigation et recherche
+
+• En-tête personnalisé avec recherche prédictive en JavaScript natif : suggestions de produits en direct via l'API /search/suggest.json de Shopify
+• Page de résultats de recherche restylée sur le modèle des pages collection (sidebar, fil d'Ariane, cartes produit)
+• Pied de page personnalisé
+
+Pages de contenu
+
+• Pages À propos, FAQ et Contact construites en sections, éditables depuis le customizer
+• Page panier restylée
+
+Technique
+
+• Liquid pour le templating, avec des schémas de section complets : réglages, blocs et valeurs par défaut pour chaque section custom
+• Metafields produit pour personnaliser timers, FAQ et highlights sans dupliquer de template
+• JavaScript natif, sans librairie : galerie, comptes à rebours, recherche prédictive, sliders, glisser-déposer, accordéons
+• CSS découpé par section, nommage BEM, police Poppins sur tout le thème
+• Traductions anglais et français
+
+Responsive
+
+• Desktop (901 px et plus) : deux colonnes avec galerie fixe
+• Tablette (601 à 900 px) : une colonne, vignettes sur 4 colonnes
+• Mobile (600 px et moins) : zones tactiles de 44 px minimum, grilles adaptées
+• Très petits écrans (380 px et moins) : avantages en 2 × 2, fil d'Ariane raccourci
+
+Pour tester
+
+• La boutique de démonstration est protégée par Shopify : mot de passe « test »`,
+    tags: ['Shopify', 'Liquid', 'JavaScript', 'CSS3', 'Online Store 2.0', 'Metafields'],
     category: 'web',
     status: 'deployed',
     githubUrl: 'https://github.com/YamiUtsukushi/shopify-tech-store-theme',
+    liveUrl: 'https://test-perso-dev.myshopify.com/',
     image: '/images/projects/shopify-idhightech.jpg',
-    year: 2023,
+    year: 2026,
     featured: true,
   },
 
