@@ -6,6 +6,7 @@ import { ArrowRight, MapPin, Code2, Zap } from 'lucide-react';
 import MagneticButton from '@/components/ui/MagneticButton';
 import GithubIcon from '@/components/ui/icons/GithubIcon';
 import { fadeUpVariant, EASE_SMOOTH, EASE_OUT_EXPO } from '@/lib/animations';
+import { projects } from '@/data/projects';
 
 // ============================================
 // HERO — Layout asymétrique, non centré
@@ -20,11 +21,28 @@ const ROTATING_WORDS = [
   'PHP',
 ];
 
+// Début de carrière : alternance chez L3M-Holding (oct. 2022).
+// Les années d'expérience se mettent à jour toutes seules.
+const CAREER_START = new Date(2022, 9, 1);
+
+function yearsSince(start: Date): number {
+  const now = new Date();
+  let years = now.getFullYear() - start.getFullYear();
+  if (
+    now.getMonth() < start.getMonth() ||
+    (now.getMonth() === start.getMonth() && now.getDate() < start.getDate())
+  ) {
+    years -= 1;
+  }
+  return years;
+}
+
 const STATS = [
-  { value: '3+', label: 'ans d\'exp.' },
-  { value: '10+', label: 'projets' },
-  { value: 'Bac+5', label: 'diplôme' },
-  { value: 'Freelance', label: 'disponible' },
+  { value: `${yearsSince(CAREER_START)} ans`, label: 'd\'expérience' },
+  // Toujours égal au nombre de projets affichés dans la grille
+  { value: String(projects.length), label: 'projets' },
+  { value: 'Bac+5', label: 'mention TB' },
+  { value: 'CDI · CDD', label: 'recherché' },
 ];
 
 const STACK = [
