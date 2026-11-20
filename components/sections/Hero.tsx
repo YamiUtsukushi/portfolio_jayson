@@ -113,7 +113,7 @@ export default function Hero() {
                 color: 'var(--color-accent-mid)',
               }}
             >
-              Portfolio · 2025
+              Prêt à rejoindre votre équipe
             </span>
           </motion.div>
 
