@@ -28,12 +28,13 @@ const STATS = [
 ];
 
 const STACK = [
+  { name: 'React', color: '#D6B9FC' },
   { name: 'Next.js', color: '#EDE8FF' },
   { name: 'TypeScript', color: '#838CE5' },
-  { name: 'React', color: '#D6B9FC' },
   { name: 'Node.js', color: '#4ADE80' },
-  { name: 'Python', color: '#838CE5' },
+  { name: 'PostgreSQL', color: '#838CE5' },
   { name: 'Docker', color: '#D6B9FC' },
+  { name: 'GitHub Actions', color: '#4ADE80' },
 ];
 
 export default function Hero() {
@@ -438,10 +439,11 @@ export default function Hero() {
               {[
                 { indent: 0, content: <><Tok c="#838CE5">const</Tok> <Tok c="#D6B9FC">dev</Tok> <Tok c="#7A7090">=</Tok> {'{'}</> },
                 { indent: 1, content: <><Tok c="#4ADE80">name</Tok><Tok c="#7A7090">:</Tok> <Tok c="#D6B9FC">&quot;Jayson Mooken&quot;</Tok><Tok c="#7A7090">,</Tok></> },
-                { indent: 1, content: <><Tok c="#4ADE80">age</Tok><Tok c="#7A7090">:</Tok> <Tok c="#838CE5">24</Tok><Tok c="#7A7090">,</Tok></> },
-                { indent: 1, content: <><Tok c="#4ADE80">location</Tok><Tok c="#7A7090">:</Tok> <Tok c="#D6B9FC">&quot;Île-de-France 🇫🇷&quot;</Tok><Tok c="#7A7090">,</Tok></> },
-                { indent: 1, content: <><Tok c="#4ADE80">level</Tok><Tok c="#7A7090">:</Tok> <Tok c="#D6B9FC">&quot;Bac+5 Expert Dev&quot;</Tok><Tok c="#7A7090">,</Tok></> },
-                { indent: 1, content: <><Tok c="#4ADE80">xp</Tok><Tok c="#7A7090">:</Tok> <Tok c="#D6B9FC">&quot;3+ ans (dont freelance)&quot;</Tok><Tok c="#7A7090">,</Tok></> },
+                { indent: 1, content: <><Tok c="#4ADE80">role</Tok><Tok c="#7A7090">:</Tok> <Tok c="#D6B9FC">&quot;Développeur Full Stack JS&quot;</Tok><Tok c="#7A7090">,</Tok></> },
+                { indent: 1, content: <><Tok c="#4ADE80">location</Tok><Tok c="#7A7090">:</Tok> <Tok c="#D6B9FC">&quot;Île-de-France · Remote&quot;</Tok><Tok c="#7A7090">,</Tok></> },
+                { indent: 1, content: <><Tok c="#4ADE80">degree</Tok><Tok c="#7A7090">:</Tok> <Tok c="#D6B9FC">&quot;Bac+5 · Mention TB&quot;</Tok><Tok c="#7A7090">,</Tok></> },
+                { indent: 1, content: <><Tok c="#4ADE80">xp</Tok><Tok c="#7A7090">:</Tok> <Tok c="#D6B9FC">&quot;3 ans alternance + 1 an freelance&quot;</Tok><Tok c="#7A7090">,</Tok></> },
+                { indent: 1, content: <><Tok c="#4ADE80">contract</Tok><Tok c="#7A7090">:</Tok> <Tok c="#EDE8FF">[</Tok><Tok c="#D6B9FC">&quot;CDI&quot;</Tok><Tok c="#7A7090">,</Tok> <Tok c="#D6B9FC">&quot;CDD&quot;</Tok><Tok c="#EDE8FF">]</Tok><Tok c="#7A7090">,</Tok></> },
                 { indent: 1, content: <><Tok c="#4ADE80">open</Tok><Tok c="#7A7090">:</Tok> <Tok c="#838CE5">true</Tok><Tok c="#7A7090">,</Tok></> },
                 { indent: 0, content: <><Tok c="#EDE8FF">{'}'};</Tok></> },
                 { indent: 0, content: <span style={{ color: 'transparent' }}>.</span> },
