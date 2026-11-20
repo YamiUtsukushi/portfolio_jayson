@@ -386,24 +386,53 @@ Responsive
     slug: 'web-scraping-analyse-ventes',
     title: 'Web Scraping & Analyse de ventes',
     shortDescription:
-      'Pipeline complet : scraping, nettoyage, analyse statistique et visualisation de données de ventes.',
-    longDescription: `Pipeline de données end-to-end — du scraping web à la visualisation de données de ventes.
+      'Pipeline de données en Python : scraping de pages HTML avec Requests et BeautifulSoup, analyse avec Pandas et 6 visualisations Matplotlib / Seaborn.',
+    longDescription: `Projet de data analyse réalisé en mai 2025 dans un notebook Jupyter. Il enchaîne les trois étapes d'un pipeline de données : collecter des ventes publiées sur des pages web, les nettoyer et les analyser avec Pandas, puis les présenter sous forme de graphiques. Les données portent sur le premier trimestre 2025 : 120 ventes fictives, 40 produits, 9 catégories, 6 commerciaux et 5 régions.
 
-Étapes du pipeline :
-• Scraping : extraction automatisée avec BeautifulSoup et gestion des erreurs, retries, rate limiting
-• Nettoyage : traitement des valeurs manquantes, normalisation, déduplication avec Pandas
-• Analyse : statistiques descriptives, corrélations, détection d'anomalies
-• Visualisation : dashboards matplotlib avec graphiques interactifs (tendances, saisonnalité, top produits)
+L'objectif
 
-Ce projet illustre une approche data engineering complète, de la collecte brute à l'insight business.
+Partir de données brutes affichées dans des tableaux HTML, comme on les trouverait sur un site ou un intranet, et en tirer des réponses à des questions métier : combien rapporte chaque produit, quelles régions vendent le plus, comment évolue le chiffre d'affaires d'un mois à l'autre, et les remises sont-elles les mêmes selon les catégories.
 
-Stack technique : Python, BeautifulSoup, Pandas, Matplotlib, NumPy.`,
-    tags: ['Python', 'BeautifulSoup', 'Pandas', 'Matplotlib', 'Data'],
+Partie 1 — Extraction et consolidation
+
+• Trois pages HTML (janvier, février, mars) servies par un serveur local avec python -m http.server, pour reproduire un vrai scraping par HTTP
+• Fonction fetch_sales(url) typée : requête GET avec Requests, parsing avec BeautifulSoup, extraction de chaque ligne du tableau en dictionnaire Python
+• 9 champs récupérés par vente : date, identifiant et nom du produit, catégorie, quantité, prix unitaire, remise, commercial et région
+• Fusion des trois mois, conversion en DataFrame Pandas et export en CSV
+
+Partie 2 — Nettoyage et analyse
+
+• Conversion des dates et extraction du mois
+• Calcul du chiffre d'affaires de chaque vente : quantité × prix unitaire × (1 − remise)
+• Statistiques descriptives (moyenne, médiane, écart-type, min, max) sur le chiffre d'affaires et les remises
+• Agrégations par produit sur les quantités et le chiffre d'affaires
+• Jointure produit → catégorie pour vérifier la cohérence des données
+• Classement des régions par chiffre d'affaires et par nombre de ventes, avec le top 3
+
+Partie 3 — Visualisation
+
+• Histogramme de la distribution du chiffre d'affaires par vente (Matplotlib)
+• Boxplot des remises par catégorie de produit (Seaborn)
+• Barplot des 10 produits au meilleur chiffre d'affaires moyen
+• Courbe d'évolution du chiffre d'affaires mois par mois
+• Heatmap du chiffre d'affaires par région et par mois
+• Nuage de points quantité / chiffre d'affaires, coloré par région
+
+Ce que montrent les données
+
+• Environ 56 900 € de chiffre d'affaires sur le trimestre
+• La région Central arrive en tête (environ 15 200 €), devant East et West ; North ferme la marche (environ 7 000 €)
+• Le chiffre d'affaires progresse de janvier à février, puis recule nettement en mars
+
+Stack
+
+• Python, Jupyter, Requests, BeautifulSoup, Pandas, NumPy, Matplotlib, Seaborn`,
+    tags: ['Python', 'BeautifulSoup', 'Pandas', 'Matplotlib', 'Seaborn', 'Data'],
     category: 'other',
-    status: 'in-progress',
+    status: 'archived',
     githubUrl: 'https://github.com/YamiUtsukushi/webscraping-analyse-ventes-matplotlib',
     image: '/images/projects/web-scraping-ventes.jpg',
-    year: 2024,
+    year: 2025,
     featured: false,
   },
 
