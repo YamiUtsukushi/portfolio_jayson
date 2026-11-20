@@ -498,21 +498,40 @@ Technique
     slug: 'tic-tac-toe',
     title: 'Tic-Tac-Toe',
     shortDescription:
-      'Jeu de morpion en temps réel avec React côté client et Node.js côté serveur.',
-    longDescription: `Un Tic-Tac-Toe multijoueur en temps réel — deux joueurs, une connexion, zéro latence.
+      'Morpion en React pour deux joueurs sur le même écran : pseudos, score, annulation du dernier coup, cases gagnantes surlignées et confettis.',
+    longDescription: `Jeu de morpion développé en React 18 en août 2024, pour deux joueurs qui s'affrontent sur le même écran. Je suis parti d'une grille 3 × 3 de base et je l'ai enrichie, commit après commit, avec tout ce qui rend une partie agréable : pseudos, score, retour en arrière, détection du match nul et une vraie mise en scène de la victoire. C'est un projet d'apprentissage centré sur la gestion d'état dans React.
 
-Architecture :
-• Serveur Node.js avec WebSockets pour la communication temps réel
-• Client React gérant l'état du plateau, le tour actif et les résultats
-• Logique de détection de victoire côté serveur (anti-triche)
-• Reconnexion automatique si la connexion est perdue
+L'objectif
 
-Simple dans son concept, mais solide dans son implémentation — un bon exercice de communication client-serveur en temps réel.
+Maîtriser les bases de React sur un cas concret : découper l'interface en composants, faire remonter l'état dans le composant parent, le transmettre par les props, et dériver l'affichage de l'état plutôt que de le stocker en double.
 
-Stack technique : React, Node.js, WebSockets.`,
-    tags: ['React', 'Node.js', 'WebSockets', 'JavaScript'],
+Fonctionnalités
+
+• Écran de démarrage pour saisir le pseudo des deux joueurs, utilisés ensuite dans tout le jeu
+• Grille 3 × 3 cliquable, avec l'indication du joueur dont c'est le tour
+• Détection automatique de la victoire sur les 8 alignements possibles (lignes, colonnes, diagonales)
+• Cases gagnantes surlignées sur la grille
+• Détection du match nul quand la grille est pleine sans gagnant
+• Annulation du dernier coup, bloquée une fois la partie terminée pour ne pas pouvoir modifier le résultat
+• Score cumulé de chaque joueur au fil des parties
+• Victoire mise en scène : confettis plein écran et bandeau au centre de la grille avec le nom du gagnant
+• Bouton qui se transforme en « Relancer une nouvelle partie » à la fin d'une manche
+• Interface responsive, formulaire de démarrage compris
+
+Architecture
+
+• Trois composants : Square (une case), Board (la grille) et App, qui porte tout l'état du jeu
+• Historique des coups conservé sous forme de tableaux immuables : chaque coup crée une nouvelle copie de la grille, ce qui rend l'annulation très simple
+• Gagnant et cases gagnantes calculés à chaque rendu à partir de la grille courante, sans état en double
+• Hooks useState pour l'état, useEffect pour réagir à la fin de partie (affichage du gagnant, arrêt des confettis au bout de 4 secondes)
+• Confettis avec la librairie react-confetti, transitions et mise en forme en CSS
+
+Stack
+
+• React 18, Create React App, JavaScript, CSS3, react-confetti`,
+    tags: ['React 18', 'JavaScript', 'Hooks', 'CSS3', 'react-confetti'],
     category: 'web',
-    status: 'in-progress',
+    status: 'archived',
     githubUrl: 'https://github.com/YamiUtsukushi/Tic-Tac-Toe',
     image: '/images/projects/tic-tac-toe.jpg',
     year: 2024,
