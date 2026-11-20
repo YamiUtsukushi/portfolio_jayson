@@ -440,26 +440,57 @@ Stack
     slug: 'guess-the-code',
     title: 'Guess The Code',
     shortDescription:
-      'Jeu de déduction avec niveaux de difficulté, timer, système de score et historique des parties.',
-    longDescription: `Un jeu de déduction façon Mastermind, entièrement en Vanilla JS — sans framework, sans dépendances.
+      'Jeu de déduction de code secret en JavaScript natif : 3 niveaux, chrono, score calculé, classement et historique des parties, blague en cas d\'échec.',
+    longDescription: `Guess The Code est un jeu de cadenas jouable dans le navigateur : il faut deviner un code secret de 3 ou 4 chiffres avant la fin du chrono et des essais. Le jeu est né en 2023 comme l'un de mes premiers projets JavaScript, puis je l'ai entièrement refondu en 2026 : nouvelle interface, niveaux de difficulté, système de pseudo, score, classement et historique. Il est écrit en HTML, CSS et JavaScript natif, sans framework ni librairie, et il est en ligne sur Netlify.
 
-Fonctionnalités :
-• 3 niveaux de difficulté (Easy / Medium / Hard) avec longueur de code variable
-• Timer en temps réel et pression croissante
-• Système de score basé sur la rapidité et le nombre de tentatives
-• Historique des parties persisté en localStorage
-• Feedback visuel immédiat à chaque tentative
+Le principe
 
-Ce projet prouve qu'on peut faire quelque chose de solide avec juste HTML, CSS et JavaScript natif.
+À chaque tentative, chaque chiffre reçoit une couleur : vert s'il est bien placé, orange s'il fait partie du code mais à une autre position, rouge s'il n'y figure pas. Le joueur affine ses propositions jusqu'à trouver le code, ou jusqu'à ce que le temps ou les essais s'épuisent.
 
-Stack technique : Vanilla JS, HTML5, CSS3.`,
-    tags: ['JavaScript', 'HTML5', 'CSS3', 'Vanilla JS'],
+Niveaux de difficulté
+
+• Facile : code de 4 chiffres, 90 secondes, 10 essais
+• Normal : code de 3 chiffres, 60 secondes, 7 essais
+• Difficile : code de 3 chiffres, 30 secondes, 5 essais
+• Chiffres du code toujours tous différents, générés aléatoirement à chaque partie
+
+Gameplay
+
+• Écran d'accueil avec choix du pseudo et de la difficulté
+• Pavé numérique cliquable, et saisie au clavier avec les chiffres et Retour arrière pour effacer
+• Tentative envoyée automatiquement dès que le bon nombre de chiffres est saisi
+• Historique de la partie en cours, de la tentative la plus récente à la plus ancienne, avec son numéro
+• Chrono avec barre de progression qui passe en rouge et pulse dans les 10 dernières secondes
+• Modale d'aide qui rappelle les règles à tout moment
+
+Score et classement
+
+• Score calculé à chaque victoire : (1000 + 100 points par essai restant − 10 points par seconde écoulée) × multiplicateur de difficulté (× 1, × 1,5 ou × 2)
+• Classement des 10 meilleurs scores avec médailles or, argent et bronze, le pseudo, le nombre d'essais et le temps
+• Onglet d'historique global : les 50 dernières parties, gagnées ou perdues, avec joueur, essais, temps et date
+• Scores et historique sauvegardés dans le localStorage du navigateur
+
+Ambiance
+
+• Confettis animés et applaudissements en cas de victoire
+• En cas de défaite, une blague en français récupérée en direct via JokeAPI, avec un message de secours si l'API ne répond pas
+• Sons au clic sur le pavé, à la victoire et à l'échec
+• Mode sombre et mode clair commutables
+
+Technique
+
+• JavaScript natif organisé autour d'un objet d'état unique (pseudo, difficulté, code secret, essais, saisie, chrono)
+• Configuration des niveaux centralisée dans un seul objet, ce qui permet d'ajouter un niveau en une ligne
+• Chrono géré avec setInterval, appel d'API avec fetch et async / await
+• Interface générée dynamiquement : cases de saisie, pavé numérique, lignes de tentatives, classement
+• CSS avec variables pour les deux thèmes, animations et mise en page responsive mobile et desktop`,
+    tags: ['JavaScript', 'HTML5', 'CSS3', 'Vanilla JS', 'localStorage', 'API REST'],
     category: 'web',
     status: 'deployed',
     githubUrl: 'https://github.com/YamiUtsukushi/guess-the-code',
     liveUrl: 'https://guess-the-code-by-jayson.netlify.app/',
     image: '/images/projects/guess-the-code.jpg',
-    year: 2024,
+    year: 2026,
     featured: false,
   },
 
