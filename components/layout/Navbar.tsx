@@ -156,13 +156,17 @@ export default function Navbar() {
           <motion.button
             className="flex items-center justify-center rounded-lg p-2 md:hidden"
             style={{
+              // 44 × 44 px : taille minimale recommandée pour une cible tactile
+              minWidth: '44px',
+              minHeight: '44px',
               background: 'rgba(131, 140, 229, 0.1)',
               border: '1px solid rgba(131, 140, 229, 0.2)',
               color: 'var(--color-text)',
             }}
             onClick={() => setIsOpen((o) => !o)}
             whileTap={{ scale: 0.9 }}
-            aria-label="Toggle navigation"
+            aria-label={isOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
+            aria-expanded={isOpen}
           >
             <AnimatePresence mode="wait" initial={false}>
               {isOpen ? (

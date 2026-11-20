@@ -193,27 +193,7 @@ code, pre, kbd {
    desktop : > 1024px
    ============================================ */
 
-/* Hero — stats row */
-@media (max-width: 599px) {
-  .hero-stats-row {
-    gap: 0 !important;
-    padding-top: 1.25rem !important;
-  }
-  .hero-stat-item {
-    padding-right: 0.9rem !important;
-    margin-right: 0.9rem !important;
-  }
-  .hero-stat-value {
-    font-size: 1.1rem !important;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero-stat-item {
-    padding-right: 0.65rem !important;
-    margin-right: 0.65rem !important;
-  }
-}
+/* Hero — stats row : styles responsive dans Hero.tsx (grille 2 × 2 sur téléphone) */
 
 /* Section paddings responsive */
 @media (max-width: 599px) {
@@ -298,4 +278,92 @@ code, pre, kbd {
   outline: 2px solid var(--color-accent-mid);
   outline-offset: 3px;
   border-radius: 4px;
+}
+
+/* ============================================
+   TÉLÉPHONE & TABLETTE
+   ============================================ */
+
+/* Hauteur plein écran qui tient compte de la barre d'adresse mobile :
+   100vh est plus grand que la zone visible sur iPhone / Android,
+   100svh correspond à la vraie hauteur visible (repli sur 100vh). */
+.min-h-screen-safe {
+  min-height: 100vh;
+  min-height: 100svh;
+}
+
+/* Titres : un mot long (« d'Observabilité ») ne doit jamais dépasser
+   de l'écran — coupure avec trait d'union en français (html lang="fr") */
+h1,
+h2,
+h3 {
+  overflow-wrap: break-word;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+
+/* Filtres techno de la grille de projets */
+.tag-filters {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+.tag-filters-toggle {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  /* Bouton « Filtrer par techno » à la place de la liste complète */
+  .tag-filters-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    min-height: 44px;
+    margin: 0 auto 1rem;
+    padding: 10px 16px;
+    border-radius: 10px;
+    border: 1px solid rgba(131, 140, 229, 0.2);
+    background: rgba(18, 16, 26, 0.6);
+    color: var(--color-accent-soft);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .tag-filters {
+    margin-bottom: 2rem;
+  }
+
+  .tag-filters--collapsed {
+    display: none;
+  }
+
+  /* Boutons de filtre plus faciles à toucher */
+  .tag-filters button {
+    min-height: 36px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Safari iOS zoome automatiquement sur les champs de moins de 16 px
+     dès qu'on les touche : on impose 16 px sur mobile */
+  input,
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
+}
+
+/* Écrans tactiles : cibles d'au moins 40 px pour les petits boutons
+   (liens GitHub / Live des cartes projet) */
+@media (pointer: coarse) {
+  .touch-target {
+    min-width: 40px !important;
+    min-height: 40px !important;
+  }
 }

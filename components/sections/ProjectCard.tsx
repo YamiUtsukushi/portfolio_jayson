@@ -371,6 +371,7 @@ function ExternalActionLink({
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}
+      className="touch-target"
       onClick={(e) => e.stopPropagation()}
       style={{
         display: 'inline-flex',

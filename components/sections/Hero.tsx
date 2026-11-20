@@ -74,8 +74,9 @@ export default function Hero() {
     <section
       ref={ref}
       id="hero"
+      // Hauteur plein écran adaptée à la barre d'adresse mobile (voir globals.css)
+      className="min-h-screen-safe"
       style={{
-        minHeight: '100vh',
         display: 'flex',
         alignItems: 'center',
         paddingTop: 'clamp(5rem, 14vw, 6rem)',
@@ -594,8 +595,10 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Scroll indicator — bas de page */}
+      {/* Scroll indicator — bas de page (masqué sous 900 px : le contenu
+          descend jusqu'en bas et l'indicateur le chevauchait) */}
       <motion.div
+        className="hero-scroll-indicator"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 0.6 }}
@@ -638,23 +641,53 @@ export default function Hero() {
           .hero-grid {
             gap: 2.5rem !important;
           }
+          .hero-scroll-indicator {
+            display: none !important;
+          }
         }
+        /* Écrans de moins de 1000 px de haut (portables, iPad paysage) : le contenu
+           atteint le bas du hero, l'indicateur « Scroll » chevaucherait les stats */
+        @media (max-height: 999px) {
+          .hero-scroll-indicator {
+            display: none !important;
+          }
+        }
+        /* À partir de 600 px (tablette ET desktop, où le hero est en 2 colonnes
+           et la colonne de gauche étroite) : les 4 stats sur une ligne régulière,
+           au lieu de « CDI · CDD » renvoyé seul à la ligne */
+        @media (min-width: 600px) {
+          .hero-stats-row {
+            display: grid !important;
+            grid-template-columns: repeat(4, auto);
+            justify-content: space-between;
+            column-gap: 1rem !important;
+          }
+          .hero-stat-item {
+            margin-right: 0 !important;
+            padding-right: 0 !important;
+            border-right: none !important;
+          }
+          .hero-stat-value {
+            white-space: nowrap;
+          }
+        }
+        /* Téléphone : stats en grille 2 × 2, sans séparateurs verticaux */
         @media (max-width: 599px) {
           .hero-stats-row {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr;
+            row-gap: 1.1rem !important;
+            column-gap: 1rem !important;
             padding-top: 1.25rem !important;
           }
           .hero-stat-item {
-            padding-right: 0.9rem !important;
-            margin-right: 0.9rem !important;
+            padding-right: 0 !important;
+            margin-right: 0 !important;
+            border-right: none !important;
           }
           .hero-stat-value {
-            font-size: 1.1rem !important;
-          }
-        }
-        @media (max-width: 400px) {
-          .hero-stat-item {
-            padding-right: 0.6rem !important;
-            margin-right: 0.6rem !important;
+            font-size: 1.2rem !important;
+            white-space: nowrap;
           }
         }
       `}</style>

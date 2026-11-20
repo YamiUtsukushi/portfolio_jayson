@@ -95,7 +95,9 @@ export default function ProjectDetailClient({ project }: Props) {
             style={{
               fontFamily: 'var(--font-display)',
               fontWeight: 800,
-              fontSize: 'clamp(2rem, 6vw, 4rem)',
+              // Minimum 1.5rem : un mot long (« d'Observabilité ») tient en entier
+              // sur un écran de téléphone de 320 px sans être coupé
+              fontSize: 'clamp(1.5rem, 6.5vw, 4rem)',
               color: 'var(--color-text)',
               letterSpacing: '-0.03em',
               lineHeight: 1.05,

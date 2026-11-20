@@ -2,6 +2,7 @@
 
 import { useState, useRef } from 'react';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
+import { ChevronDown } from 'lucide-react';
 import ProjectCard from './ProjectCard';
 import { projects, getAllTags } from '@/data/projects';
 import { fadeUpVariant, staggerContainer } from '@/lib/animations';
@@ -26,6 +27,9 @@ export default function ProjectGrid() {
 
   const [activeStatus, setActiveStatus] = useState<StatusFilter>('all');
   const [activeTag, setActiveTag] = useState<string | null>(null);
+  // Sur téléphone, les ~40 filtres techno sont repliés derrière un bouton
+  // (sinon ils occupent tout un écran avant le premier projet)
+  const [tagsOpen, setTagsOpen] = useState(false);
 
   const allTags = getAllTags();
 
@@ -119,29 +123,52 @@ export default function ProjectGrid() {
 
         {/* Filtres tags */}
         {allTags.length > 0 && (
-          <motion.div
+          <motion.button
+            type="button"
+            className="tag-filters-toggle"
+            onClick={() => setTagsOpen((o) => !o)}
+            aria-expanded={tagsOpen}
+            aria-controls="tag-filters"
             variants={fadeUpVariant}
             initial="hidden"
             animate={isInView ? 'visible' : 'hidden'}
-            style={{
-              display: 'flex',
-              gap: '6px',
-              flexWrap: 'wrap',
-              justifyContent: 'center',
-              marginBottom: '3rem',
-            }}
+          >
+            <span>
+              {activeTag ? `Techno : ${activeTag}` : `Filtrer par techno (${allTags.length})`}
+            </span>
+            <ChevronDown
+              size={16}
+              style={{ transform: tagsOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s ease' }}
+            />
+          </motion.button>
+        )}
+
+        {allTags.length > 0 && (
+          <motion.div
+            id="tag-filters"
+            className={`tag-filters${tagsOpen ? '' : ' tag-filters--collapsed'}`}
+            variants={fadeUpVariant}
+            initial="hidden"
+            animate={isInView ? 'visible' : 'hidden'}
           >
             <TagButton
               label="Tous les techs"
               isActive={activeTag === null}
-              onClick={() => setActiveTag(null)}
+              onClick={() => {
+                setActiveTag(null);
+                setTagsOpen(false);
+              }}
             />
             {allTags.map((tag) => (
               <TagButton
                 key={tag}
                 label={tag}
                 isActive={activeTag === tag}
-                onClick={() => setActiveTag(activeTag === tag ? null : tag)}
+                onClick={() => {
+                  setActiveTag(activeTag === tag ? null : tag);
+                  // Sur téléphone, on replie la liste pour montrer les résultats
+                  setTagsOpen(false);
+                }}
               />
             ))}
           </motion.div>
