@@ -2,7 +2,7 @@
 
 import { useRef, useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from 'framer-motion';
+import { motion, useMotionValue, useSpring, useTransform, AnimatePresence, type MotionValue } from 'framer-motion';
 import { ExternalLink, ArrowUpRight } from 'lucide-react';
 import GithubIcon from '@/components/ui/icons/GithubIcon';
 import StatusBadge from '@/components/ui/StatusBadge';
@@ -23,7 +23,11 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   const router = useRouter();
   const cardRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+  // Position de la preview : motion values, pour ne pas re-rendre la card
+  // à chaque mouvement de souris (l'ancien setState le faisait ~60 fois/s).
+  const previewLeft = useMotionValue(0);
+  const previewTop = useMotionValue(0);
 
   // Désactiver tilt + preview sur touch/mobile
   // useEffect pour éviter le hydration mismatch (window n'existe pas côté SSR)
@@ -63,7 +67,17 @@ export default function ProjectCard({ project }: ProjectCardProps) {
     rawRotateY.set(((x - centerX) / centerX) * 15);
     glowX.set((x / rect.width) * 100);
     glowY.set((y / rect.height) * 100);
-    setMousePos({ x: e.clientX, y: e.clientY });
+
+    const { left, top } = computePreviewPosition(e.clientX, e.clientY);
+    previewLeft.set(left);
+    previewTop.set(top);
+  };
+
+  const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
+    const { left, top } = computePreviewPosition(e.clientX, e.clientY);
+    previewLeft.set(left);
+    previewTop.set(top);
+    setIsHovered(true);
   };
 
   const handleMouseLeave = () => {
@@ -92,7 +106,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         ref={cardRef}
         onClick={handleCardClick}
         onMouseMove={handleMouseMove}
-        onMouseEnter={() => setIsHovered(true)}
+        onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         role="button"
         tabIndex={0}
@@ -328,8 +342,8 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           <HoverPreview
             title={project.title}
             tag={project.tags[0] ?? ''}
-            mouseX={mousePos.x}
-            mouseY={mousePos.y}
+            left={previewLeft}
+            top={previewTop}
           />
         )}
       </AnimatePresence>
@@ -394,30 +408,37 @@ function ExternalActionLink({
 // HOVER PREVIEW
 // ============================================
 
+const PREVIEW_W = 200;
+const PREVIEW_H = 80;
+
+// Place la preview près du curseur en évitant les bords de l'écran
+function computePreviewPosition(mouseX: number, mouseY: number) {
+  const padding = 20;
+  const viewportW = window.innerWidth;
+  const viewportH = window.innerHeight;
+
+  let left = mouseX + padding;
+  let top = mouseY - PREVIEW_H / 2;
+
+  if (left + PREVIEW_W > viewportW - 20) left = mouseX - PREVIEW_W - padding;
+  if (top < 20) top = 20;
+  if (top + PREVIEW_H > viewportH - 20) top = viewportH - PREVIEW_H - 20;
+
+  return { left, top };
+}
+
 function HoverPreview({
   title,
   tag,
-  mouseX,
-  mouseY,
+  left,
+  top,
 }: {
   title: string;
   tag: string;
-  mouseX: number;
-  mouseY: number;
+  left: MotionValue<number>;
+  top: MotionValue<number>;
 }) {
-  const padding = 20;
-  const previewW = 200;
-  const previewH = 80;
-
-  const viewportW = typeof window !== 'undefined' ? window.innerWidth : 1440;
-  const viewportH = typeof window !== 'undefined' ? window.innerHeight : 900;
-
-  let left = mouseX + padding;
-  let top = mouseY - previewH / 2;
-
-  if (left + previewW > viewportW - 20) left = mouseX - previewW - padding;
-  if (top < 20) top = 20;
-  if (top + previewH > viewportH - 20) top = viewportH - previewH - 20;
+  const previewW = PREVIEW_W;
 
   return (
     <motion.div
@@ -427,6 +448,7 @@ function HoverPreview({
       exit="exit"
       style={{
         position: 'fixed',
+        // Motion values : mises à jour directement dans le DOM, sans re-rendu React
         left,
         top,
         zIndex: 9990,

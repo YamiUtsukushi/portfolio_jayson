@@ -8,6 +8,7 @@ import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import PageTransition from '@/components/ui/PageTransition';
 import ScrollToTop from '@/components/ui/ScrollToTop';
+import MotionProvider from '@/components/ui/MotionProvider';
 
 // ============================================
 // FONTS — Syne (titres) + DM Sans (corps)
@@ -74,6 +75,7 @@ export default function RootLayout({
         }}
         suppressHydrationWarning
       >
+        <MotionProvider>
         {/* Scroll to top à chaque changement de route */}
         <ScrollToTop />
 
@@ -96,6 +98,7 @@ export default function RootLayout({
           </main>
           <Footer />
         </PageTransition>
+        </MotionProvider>
       </body>
     </html>
   );

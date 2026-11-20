@@ -99,6 +99,24 @@ body::before {
   }
 }
 
+/* Curseur clignotant du bloc de code du Hero (CSS pur, sans re-rendu React) */
+@keyframes hero-caret-blink {
+  0%, 50% { opacity: 1; }
+  50.01%, 100% { opacity: 0; }
+}
+
+.hero-caret-blink {
+  animation: hero-caret-blink 1.06s steps(1, end) infinite;
+}
+
+/* Accessibilité + perf : on coupe les animations décoratives en CSS
+   pour les visiteurs qui ont demandé moins de mouvement */
+@media (prefers-reduced-motion: reduce) {
+  .hero-caret-blink {
+    animation: none;
+  }
+}
+
 /* ============================================
    TYPOGRAPHY
    ============================================ */

@@ -59,7 +59,6 @@ export default function Hero() {
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: true, margin: '-50px' });
   const [wordIndex, setWordIndex] = useState(0);
-  const [cursorVisible, setCursorVisible] = useState(true);
 
   // Cycle des mots
   useEffect(() => {
@@ -67,12 +66,6 @@ export default function Hero() {
       setWordIndex((i) => (i + 1) % ROTATING_WORDS.length);
     }, 2400);
     return () => clearInterval(interval);
-  }, []);
-
-  // Clignotement curseur
-  useEffect(() => {
-    const blink = setInterval(() => setCursorVisible((v) => !v), 530);
-    return () => clearInterval(blink);
   }, []);
 
   return (
@@ -472,7 +465,8 @@ export default function Hero() {
                     <>
                       <Tok c="#838CE5">{'>'}</Tok>
                       <span style={{ color: 'var(--color-text)' }}> _</span>
-                      <span style={{ opacity: cursorVisible ? 1 : 0, color: 'var(--color-accent-mid)' }}>|</span>
+                      {/* Clignotement en CSS pur : l'ancien setInterval re-rendait tout le Hero toutes les 530 ms */}
+                      <span className="hero-caret-blink" style={{ color: 'var(--color-accent-mid)' }}>|</span>
                     </>
                   ),
                 },
