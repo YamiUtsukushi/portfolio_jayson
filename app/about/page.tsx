@@ -15,7 +15,9 @@ import {
   ExternalLink,
   ArrowLeft,
   ChevronRight,
+  Download,
 } from 'lucide-react';
+import { CV_URL, CV_FILENAME } from '@/lib/site';
 import Link from 'next/link';
 import GithubIcon from '@/components/ui/icons/GithubIcon';
 import { fadeUpVariant, EASE_SMOOTH, EASE_OUT_EXPO } from '@/lib/animations';
@@ -378,12 +380,14 @@ function AboutHeader() {
           { icon: <Mail size={12} />, label: 'jaymooken@gmail.com', href: 'mailto:jaymooken@gmail.com' },
           { icon: <Phone size={12} />, label: '06 34 04 20 59', href: 'tel:0634042059' },
           { icon: <GithubIcon size={12} />, label: 'YamiUtsukushi', href: 'https://github.com/YamiUtsukushi' },
-        ].map(({ icon, label, href }) => {
+          { icon: <Download size={12} />, label: 'Télécharger mon CV', href: CV_URL, download: CV_FILENAME },
+        ].map(({ icon, label, href, download }) => {
           const Tag = href ? 'a' : 'span';
           return (
             <Tag
               key={label}
               href={href ?? undefined}
+              download={download}
               target={href?.startsWith('http') ? '_blank' : undefined}
               rel={href?.startsWith('http') ? 'noopener noreferrer' : undefined}
               style={{
@@ -968,6 +972,24 @@ function ContactCTA() {
         >
           <Mail size={15} />
           Envoyer un mail
+        </a>
+        <a
+          href={CV_URL}
+          download={CV_FILENAME}
+          style={{
+            display: 'inline-flex', alignItems: 'center', gap: '8px',
+            padding: '12px 22px', borderRadius: '10px',
+            background: 'rgba(214,185,252,0.08)',
+            border: '1px solid rgba(214,185,252,0.3)',
+            color: 'var(--color-accent-soft)', fontFamily: 'var(--font-body)',
+            fontWeight: 500, fontSize: '0.9rem', textDecoration: 'none',
+            transition: 'all 0.25s ease',
+          }}
+          onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'rgba(214,185,252,0.55)'; }}
+          onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'rgba(214,185,252,0.3)'; }}
+        >
+          <Download size={14} />
+          Mon CV
         </a>
         <a
           href="https://www.linkedin.com/in/jayson-mooken/"

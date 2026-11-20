@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getProjectBySlug, projects } from '@/data/projects';
 import ProjectDetailClient from './ProjectDetailClient';
+import { SITE_NAME } from '@/lib/site';
 
 // ============================================
 // PROJECT DETAIL PAGE — Static generation
@@ -24,8 +25,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: project.title,
     description: project.shortDescription,
+    alternates: { canonical: `/projects/${project.slug}` },
     openGraph: {
-      title: `${project.title} | Jayson`,
+      type: 'article',
+      url: `/projects/${project.slug}`,
+      title: `${project.title} | ${SITE_NAME}`,
       description: project.shortDescription,
     },
   };

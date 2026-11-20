@@ -1,4 +1,16 @@
 import { NextResponse } from 'next/server';
+import { SITE_URL } from '@/lib/site';
+
+// Échappe le HTML : les champs saisis par le visiteur sont insérés
+// dans l'email, ils ne doivent pas pouvoir y injecter de balises.
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
 
 // ============================================
 // API CONTACT — POST /api/contact
@@ -33,11 +45,26 @@ export async function POST(request: Request) {
       );
     }
 
+    // Clé absente (variable non configurée sur l'hébergeur) : on le dit
+    // clairement dans les logs au lieu d'envoyer une requête vouée à l'échec.
+    const apiKey = process.env.BREVO_API_KEY;
+    if (!apiKey) {
+      console.error('[Contact API] BREVO_API_KEY manquante : configure-la sur l\'hébergeur.');
+      return NextResponse.json(
+        { error: 'Le formulaire est momentanément indisponible. Écris-moi directement par email.' },
+        { status: 503 }
+      );
+    }
+
+    const safeName = escapeHtml(String(name));
+    const safeEmail = escapeHtml(String(email));
+    const safeMessage = escapeHtml(String(message)).replace(/\n/g, '<br>');
+
     const res = await fetch('https://api.brevo.com/v3/smtp/email', {
       method: 'POST',
       headers: {
         'accept': 'application/json',
-        'api-key': process.env.BREVO_API_KEY ?? '',
+        'api-key': apiKey,
         'content-type': 'application/json',
       },
       body: JSON.stringify({
@@ -72,22 +99,22 @@ export async function POST(request: Request) {
               <div class="container">
                 <div class="header">
                   <h1>✉️ Nouveau message de contact</h1>
-                  <p>Portfolio — jayson-mooken.dev</p>
+                  <p>Portfolio — ${SITE_URL.replace('https://', '')}</p>
                 </div>
                 <div class="body">
                   <div class="field">
                     <div class="label">Nom</div>
-                    <div class="value">${name}</div>
+                    <div class="value">${safeName}</div>
                   </div>
                   <div class="field">
                     <div class="label">Email</div>
-                    <div class="value">${email}</div>
+                    <div class="value">${safeEmail}</div>
                   </div>
                   <div class="field">
                     <div class="label">Message</div>
-                    <div class="message-box">${message.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br>')}</div>
+                    <div class="message-box">${safeMessage}</div>
                   </div>
-                  <a href="mailto:${email}" class="reply-btn">Répondre à ${name}</a>
+                  <a href="mailto:${safeEmail}" class="reply-btn">Répondre à ${safeName}</a>
                 </div>
                 <div class="footer">
                   Ce message a été envoyé depuis le formulaire de contact de ton portfolio.

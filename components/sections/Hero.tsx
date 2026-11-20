@@ -2,23 +2,25 @@
 
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
-import { ArrowRight, MapPin, Code2, Zap } from 'lucide-react';
+import { ArrowRight, MapPin, Code2, Zap, Download } from 'lucide-react';
 import MagneticButton from '@/components/ui/MagneticButton';
 import GithubIcon from '@/components/ui/icons/GithubIcon';
 import { fadeUpVariant, EASE_SMOOTH, EASE_OUT_EXPO } from '@/lib/animations';
 import { projects } from '@/data/projects';
+import { CV_URL, CV_FILENAME } from '@/lib/site';
 
 // ============================================
 // HERO — Layout asymétrique, non centré
 // Texte gauche · Carte flottante droite
 // ============================================
 
+// Alignés sur le positionnement du CV : Full Stack JavaScript
 const ROTATING_WORDS = [
   'JavaScript',
   'TypeScript',
-  'Python',
-  'Java',
-  'PHP',
+  'React',
+  'Node.js',
+  'PostgreSQL',
 ];
 
 // Début de carrière : alternance chez L3M-Holding (oct. 2022).
@@ -278,6 +280,30 @@ export default function Hero() {
             >
               Voir les projets
               <ArrowRight size={15} />
+            </MagneticButton>
+
+            <MagneticButton
+              href={CV_URL}
+              download={CV_FILENAME}
+              aria-label="Télécharger mon CV en PDF"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                padding: '13px 22px',
+                borderRadius: '10px',
+                background: 'rgba(214, 185, 252, 0.08)',
+                border: '1px solid rgba(214, 185, 252, 0.3)',
+                color: 'var(--color-accent-soft)',
+                fontFamily: 'var(--font-body)',
+                fontWeight: 500,
+                fontSize: '0.9rem',
+                textDecoration: 'none',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              <Download size={15} />
+              Mon CV
             </MagneticButton>
 
             <MagneticButton

@@ -19,6 +19,8 @@ interface MagneticButtonProps {
   href?: string;
   target?: string;
   rel?: string;
+  /** Nom du fichier proposé au téléchargement (lien `href` uniquement) */
+  download?: string;
   type?: 'button' | 'submit' | 'reset';
   disabled?: boolean;
   'aria-label'?: string;
@@ -34,6 +36,7 @@ export default function MagneticButton({
   href,
   target,
   rel,
+  download,
   type = 'button',
   disabled = false,
   'aria-label': ariaLabel,
@@ -81,6 +84,7 @@ export default function MagneticButton({
           href={href}
           target={target}
           rel={rel ?? (target === '_blank' ? 'noopener noreferrer' : undefined)}
+          download={download}
           aria-label={ariaLabel}
           className={className}
           style={style}

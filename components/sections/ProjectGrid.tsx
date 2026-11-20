@@ -241,7 +241,7 @@ function FilterButton({
       whileHover={{ scale: 1.03 }}
       whileTap={{ scale: 0.97 }}
       animate={{
-        background: isActive
+        backgroundColor: isActive
           ? 'rgba(80,32,122,0.7)'
           : 'rgba(18,16,26,0.6)',
         borderColor: isActive
@@ -261,7 +261,8 @@ function FilterButton({
         fontWeight: 500,
         fontSize: '0.85rem',
         backdropFilter: 'blur(12px)',
-        transition: 'all 0.2s ease',
+        // Pas de `transition: all` CSS : il doublait les animations de
+        // Framer Motion (couleurs et zoom au survol) et les faisait saccader.
         cursor: 'pointer',
       }}
     >
@@ -288,14 +289,16 @@ function TagButton({
       onClick={onClick}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
+      // Valeurs rgba / hex uniquement : Framer Motion ne sait pas animer
+      // 'transparent' ni les var(--…), et inondait la console d'avertissements.
       animate={{
-        background: isActive
+        backgroundColor: isActive
           ? 'rgba(131,140,229,0.2)'
-          : 'transparent',
+          : 'rgba(131,140,229,0)',
         borderColor: isActive
           ? 'rgba(131,140,229,0.5)'
           : 'rgba(131,140,229,0.12)',
-        color: isActive ? 'var(--color-accent-soft)' : 'var(--color-muted)',
+        color: isActive ? '#D6B9FC' : '#7A7090',
       }}
       transition={{ duration: 0.15 }}
       style={{

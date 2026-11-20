@@ -9,6 +9,7 @@ import Footer from '@/components/layout/Footer';
 import PageTransition from '@/components/ui/PageTransition';
 import ScrollToTop from '@/components/ui/ScrollToTop';
 import MotionProvider from '@/components/ui/MotionProvider';
+import { SITE_URL, SITE_NAME, SITE_TITLE, SITE_DESCRIPTION } from '@/lib/site';
 
 // ============================================
 // FONTS — Syne (titres) + DM Sans (corps)
@@ -33,20 +34,42 @@ const dmSans = DM_Sans({
 // ============================================
 
 export const metadata: Metadata = {
+  // Base des URLs absolues (image d'aperçu, canonical…)
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: 'Jayson — Développeur Full-Stack',
-    template: '%s | Jayson',
+    default: SITE_TITLE,
+    template: `%s | ${SITE_NAME}`,
   },
-  description:
-    'Portfolio de Jayson — Développeur Full-Stack passionné par les interfaces modernes, les expériences web immersives et les architectures solides.',
-  keywords: ['développeur', 'full-stack', 'React', 'Next.js', 'TypeScript', 'portfolio'],
-  authors: [{ name: 'Jayson', url: 'https://github.com/YamiUtsukushi' }],
+  description: SITE_DESCRIPTION,
+  keywords: [
+    'Jayson Mooken',
+    'développeur full stack',
+    'développeur JavaScript',
+    'React',
+    'Node.js',
+    'PostgreSQL',
+    'Next.js',
+    'TypeScript',
+    'DevOps',
+    'Shopify',
+    'portfolio',
+    'Île-de-France',
+  ],
+  authors: [{ name: SITE_NAME, url: 'https://github.com/YamiUtsukushi' }],
+  creator: SITE_NAME,
+  alternates: { canonical: '/' },
   openGraph: {
     type: 'website',
     locale: 'fr_FR',
-    title: 'Jayson — Développeur Full-Stack',
-    description: 'Portfolio de Jayson — Développeur Full-Stack',
-    siteName: 'Jayson Portfolio',
+    url: '/',
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    siteName: SITE_NAME,
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
   },
   robots: { index: true, follow: true },
 };
