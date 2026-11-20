@@ -294,24 +294,72 @@ Stack technique : Python, TensorFlow, Keras, PyTorch, Scikit-Learn, Pandas, NumP
     slug: 'shopify-theme-ldglobal',
     title: 'Shopify Theme — LD Global',
     shortDescription:
-      'Thème Shopify Online Store 2.0 pour boutique gadgets cuisine — cart drawer, sections custom, FAQ/Contact/À propos, full responsive.',
-    longDescription: `Thème Shopify Online Store 2.0 pour une boutique de gadgets de cuisine, basé sur Dawn avec un niveau de personnalisation avancé.
+      'Thème Shopify Online Store 2.0 sur mesure pour une boutique de gadgets de cuisine : catalogue filtrable, cart drawer avec upsell, pages À propos, FAQ et Contact.',
+    longDescription: `Thème Shopify Online Store 2.0 conçu pour LD Global, une boutique en dropshipping de gadgets de cuisine du quotidien : des produits simples, malins et accessibles. Je suis parti du thème Dawn et je l'ai refondu en profondeur : header sur mesure, hero animé, sept nouvelles sections pour la page d'accueil, pages Catalogue, Produit, À propos, FAQ et Contact entièrement repensées, et un cart drawer personnalisé. Tout est réglable depuis l'éditeur de thème Shopify, et la boutique est en ligne.
 
-Fonctionnalités clés :
-• Cart drawer animé avec upsells et récapitulatif produits
-• Sections custom : hero lifestyle, grille de catégories, témoignages
-• Pages dédiées : FAQ accordion, Contact stylisée, À propos avec valeurs
-• Navigation mega-menu sur desktop, hamburger sur mobile
-• Optimisation SEO : balises structurées, sitemap, meta dynamiques
+L'objectif
 
-Stack technique : Liquid, Shopify CLI, JavaScript, CSS3.`,
-    tags: ['Shopify', 'Liquid', 'JavaScript', 'CSS3'],
+Donner à une jeune boutique une image chaleureuse et rassurante, et réduire au maximum les frictions d'achat : retrouver un produit en quelques clics grâce aux filtres, l'ajouter au panier sans quitter la page, et trouver seul les réponses à ses questions avant de commander.
+
+Header et hero
+
+• Barre d'annonce avec 3 messages qui défilent verticalement, durée de rotation réglable
+• Header sur mesure : logo à gauche, barre de recherche intégrée au centre, compte et panier à droite, navigation centrée sur une deuxième ligne avec soulignement vert au survol
+• Hero Banner en slideshow : images distinctes pour desktop et mobile, mots du titre qui changent en fondu, couleurs du titre et des boutons réglables slide par slide
+• Correction d'un bug d'autoplay hérité de Dawn et d'un chevauchement entre le header sticky et le slideshow
+
+Page d'accueil : 7 sections custom
+
+• Hero Home : titre fluide avec clamp() et grille de catégories en cercles
+• Vitrine Collections : mosaïque asymétrique de 5 blocs sur une grille CSS de 12 colonnes, zoom au survol, taille des textes réglable bloc par bloc
+• Bestsellers : 6 produits choisis, ajout au panier qui ouvre directement le cart drawer
+• Avis et confiance : carrousel horizontal dont le nombre de points de navigation s'adapte au nombre de cartes visibles, avec des chiffres clés configurables
+• Mur social : mosaïque de 6 blocs construite avec grid-template-areas
+• Split Image CTA : bloc image et texte avec appel à l'action
+
+Catalogue
+
+• Sidebar de filtres fixe sur desktop, avec 5 filtres en accordéon : disponibilité, prix, catégorie, promotions et nouveautés
+• Filtre de prix à double curseur (0 à 200 €), synchronisé avec les paramètres de l'URL Shopify
+• Barre d'outils avec bouton Filtres sur tablette et mobile, et sélecteur de tri
+• Grille de 3 colonnes sur desktop et 2 sur mobile, fil d'Ariane et pagination numérotée
+
+Fiche produit
+
+• Galerie avec image principale et miniatures, sélecteur de variante et quantité
+• Suggestions de produits similaires avec ajout au panier en AJAX, via l'API /cart/add.js
+
+Cart drawer sur mesure
+
+• Sélecteur de quantité personnalisé et section d'upsell « Vous aimerez aussi »
+• Case à cocher des conditions générales avant de commander
+• Ouverture automatique du drawer depuis tous les boutons Ajouter au panier du site, grâce à un intercepteur global dans theme.liquid
+• Correction d'un bug de Dawn qui affichait un panier vide lors du tout premier ajout
+
+Pages de contenu
+
+• À propos : hero pleine largeur, trois blocs image et texte avec effet de chevauchement, chiffres clés sur fond sombre et avis clients
+• FAQ : sidebar de catégories avec icônes, questions en accordéon et recherche en temps réel parmi les questions
+• Contact : formulaire Nom, Email, Sujet et Message, colonne d'informations (support, email, engagements) et bannière d'appel à l'action
+
+Technique
+
+• Liquid avec des schémas de section complets : plus de 140 réglages au total sur les sections custom, pour que le marchand modifie textes, images, couleurs et tailles sans code
+• JavaScript natif : cart drawer, carrousels, filtre de prix, recherche dans la FAQ, mots rotatifs, ajout au panier en AJAX
+• CSS : grilles et grid-template-areas, typographie fluide avec clamp(), animations en @keyframes
+• Charte graphique cohérente : vert #74B734, police Figtree, largeur de page de 1400 px
+
+Responsive
+
+• Mise en page adaptée desktop, tablette et mobile sur chaque section
+• Sur mobile : filtres repliables, barre d'outils empilée, contrôles du slideshow masqués, sidebar de la FAQ qui défile normalement`,
+    tags: ['Shopify', 'Liquid', 'JavaScript', 'CSS3', 'Online Store 2.0', 'AJAX'],
     category: 'web',
     status: 'deployed',
     githubUrl: 'https://github.com/YamiUtsukushi/shopify-kitchen-gadgets-theme',
     liveUrl: 'https://ldglobalco.myshopify.com/',
     image: '/images/projects/shopify-ldglobal.jpg',
-    year: 2023,
+    year: 2026,
     featured: false,
   },
 
