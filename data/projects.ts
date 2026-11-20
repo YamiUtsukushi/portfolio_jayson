@@ -23,6 +23,87 @@ export const projects: Project[] = [
   // ─── FEATURED ────────────────────────────────────────────────────────────────
 
   {
+    slug: 'portail-observabilite-grafana',
+    title: 'Portail de Gestion de Projets d\'Observabilité',
+    shortDescription:
+      'Portail full stack intégré à Grafana : dashboards et rapports rangés par client et par campagne de tests, ouverts en un clic sur la bonne période.',
+    longDescription: `Projet de fin d'études Bac+5 réalisé chez Atakama Technologies (nov. 2023 – juin 2025). J'ai conçu et développé seul, en full stack, un portail web qui centralise par projet client et par campagne de tests les dashboards Grafana et les livrables documentaires. L'application automatise l'import des dashboards via l'API Grafana, les cale sur la période de chaque campagne, et elle est déployée en continu en production.
+
+Le besoin
+
+Atakama mène des campagnes de tests de performance et de monitoring pour ses clients (load tests, monitoring synthétique, expérience utilisateur, infrastructure…), dont les résultats vivent dans Grafana. Avant le portail, les équipes devaient retrouver à la main les bons dashboards dans la bonne organisation Grafana, puis saisir la plage temporelle de la campagne. Le portail range tout par projet puis par campagne, avec les rapports associés, et ouvre chaque dashboard en un clic, déjà calé sur la bonne période.
+
+Fonctionnalités
+
+• Projets clients : création, modification, suppression, et affectation à des utilisateurs par l'admin (relation N-N)
+• Configuration Grafana par projet : URL, organisation et identifiants, test de connexion avant enregistrement, nom de l'organisation importé comme nom de projet
+• Campagnes datées (début / fin) avec import groupé de dashboards dès la création
+• Import automatique depuis l'API Grafana : récupération des dashboards et classement par type selon leurs tags (LoadTest, DigitalExpMon, Infrastructure…)
+• Injection automatique de from / to / orgId dans les URLs Grafana, avec une option « sans plage temporelle »
+• Dashboards : ajout en masse, détection des doublons côté front et back, modification et suppression unitaire ou multiple
+• Consultation : dashboards groupés par type, recherche, filtres par type et par période, ouverture directe dans Grafana
+• Documents de campagne : upload, téléchargement, remplacement et suppression de rapports (PDF, etc.)
+• Navigation en arbre Projets → Campagnes dans une barre latérale qui suit l'URL
+• Comptes : connexion JWT, déconnexion automatique à l'expiration du token, mot de passe oublié par e-mail, édition du profil
+• Administration : gestion des utilisateurs et des rôles, filtre des projets par utilisateur
+
+Back-end
+
+• API REST Node.js 20 / Express en couches : routes → services → repositories → modèles Sequelize
+• Routes REST imbriquées : /projets/:id/details/:detailId/dashboards et /documents
+• PostgreSQL 16 : 8 tables, relations 1-1 (configuration Grafana) et N-N (affectations), ENUM pour les types de dashboards, suppressions en cascade
+• Authentification JWT + bcrypt, rôles USER / ADMIN protégés par middleware
+• Validation des entrées avec express-validator, gestion d'erreurs centralisée
+• Proxy back-end vers Grafana pour contourner le CORS et garder les appels côté serveur
+• Upload de fichiers avec Multer, e-mails transactionnels avec Nodemailer
+
+Front-end
+
+• React 18 avec React Router 6 et routes privées, panneau admin chargé à la demande
+• Pattern vue / contrôleur : chaque écran a un hook useXxxController qui porte l'état et les appels API, le composant ne fait que l'affichage
+• État global léger avec trois contextes (Auth, Project, Campaign) plutôt que Redux
+• Recherche, filtres, tris par colonne, actions groupées, upload et téléchargement de documents
+
+CI/CD et infrastructure
+
+• Trois services Docker (front React, API Express, PostgreSQL) derrière le reverse proxy Traefik en HTTPS
+• GitHub Actions : à chaque push sur main, build d'une image Docker taguée par le hash du commit, push sur un registre privé
+• Déploiement automatique via un playbook Ansible lancé en SSH sur le serveur, sans intervention manuelle
+• Deux dépôts orchestrés par sous-modules git : l'API déclenche ensuite le pipeline du front
+
+Ce que ça apporte
+
+• Gain de temps : plus besoin de naviguer dans Grafana ni de saisir les dates à la main
+• Fiabilité : URLs normalisées, doublons détectés, configuration Grafana vérifiée avant enregistrement
+• Traçabilité : chaque campagne regroupe sa période, ses dashboards et ses livrables
+• Pilotage : vue consolidée des projets par utilisateur et accès attribués par l'admin
+
+En chiffres
+
+• 15 fonctionnalités livrées front et back
+• ~600 commits (≈ 250 côté API, ≈ 360 côté front)
+• 19 mois de développement, méthode agile avec tickets Jira`,
+    tags: [
+      'React 18',
+      'Node.js',
+      'Express',
+      'PostgreSQL',
+      'Sequelize',
+      'Grafana',
+      'JWT',
+      'Docker',
+      'GitHub Actions',
+      'Ansible',
+      'Traefik',
+    ],
+    category: 'web',
+    status: 'deployed',
+    image: '/images/projects/portail-observabilite-grafana.jpg',
+    year: 2025,
+    featured: true,
+  },
+
+  {
     slug: 'sneakers-shop-react',
     title: 'Sneakers Shop React',
     shortDescription:
