@@ -18,18 +18,12 @@ export default function PageTransition({ children }: PageTransitionProps) {
   const pathname = usePathname();
 
   return (
+    // Pas d'animation `exit` : avec l'App Router, `children` passe déjà à la
+    // nouvelle route pendant la sortie, et au retour navigateur (popstate)
+    // la sortie ne se termine jamais → la page restait bloquée à opacity 0.
     <AnimatePresence mode="wait">
       <motion.div key={pathname} className="relative">
-        {/* Wipe in — panneau violet entre */}
-        <motion.div
-          className="pointer-events-none fixed inset-0 z-[9990]"
-          style={{ backgroundColor: '#50207A', transformOrigin: 'left' }}
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 0 }}
-          exit={{ scaleX: 0 }}
-        />
-
-        {/* Overlay d'entrée */}
+        {/* Overlay d'entrée — panneau violet qui se retire */}
         <motion.div
           className="pointer-events-none fixed inset-0 z-[9990]"
           style={{ backgroundColor: '#50207A', transformOrigin: 'left' }}
@@ -48,11 +42,6 @@ export default function PageTransition({ children }: PageTransitionProps) {
             opacity: 1,
             y: 0,
             transition: { duration: 0.5, delay: 0.25, ease: [0.25, 0.46, 0.45, 0.94] },
-          }}
-          exit={{
-            opacity: 0,
-            y: -8,
-            transition: { duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94] },
           }}
         >
           {children}
