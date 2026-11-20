@@ -260,31 +260,50 @@ Pour tester
     slug: 'ml-deep-learning',
     title: 'Machine Learning & Deep Learning',
     shortDescription:
-      '3 cas pratiques : CNN sur CIFAR-10, Random Forest sur données bancaires, LSTM pour le NLP.',
-    longDescription: `Exploration de 3 cas pratiques en Machine Learning et Deep Learning, couvrant les principaux paradigmes de l'IA moderne.
+      'Projet de Master en équipe : classification d\'images CIFAR-10 (CNN et transfer learning), détection de fraude bancaire (Random Forest) et classification de texte (LSTM).',
+    longDescription: `Projet d'équipe réalisé en Master 2 (Nexa Digital School) à cinq, en juillet 2025. Il couvre trois grandes familles de problèmes en Machine Learning et Deep Learning, chacune sur un jeu de données réel, dans un notebook Jupyter dédié : la vision par ordinateur, les données tabulaires et le traitement du langage. Chaque partie suit la même démarche : exploration des données, préparation, construction du modèle, entraînement, évaluation, puis analyse critique des résultats.
 
-Cas 1 — CNN (CIFAR-10) :
-• Classification d'images avec un réseau de convolution
-• Data augmentation, dropout, batch normalization
-• Accuracy finale > 85% sur le jeu de test
+Partie 1 — Classification d'images avec des CNN
 
-Cas 2 — Random Forest (données bancaires) :
-• Détection de fraude sur données tabulaires déséquilibrées
-• Feature engineering, SMOTE, GridSearchCV
-• Analyse d'importance des features
+• Jeu de données CIFAR-10 : 60 000 images couleur de 32 × 32 pixels réparties en 10 classes (50 000 pour l'entraînement, 10 000 pour le test)
+• CNN construit avec Keras : 3 couches de convolution, 2 de max pooling et une tête dense, soit environ 122 000 paramètres
+• Callbacks ModelCheckpoint pour garder le meilleur modèle et EarlyStopping pour arrêter l'entraînement dès que la validation ne progresse plus
+• Résultat : 70,6 % de précision sur le jeu de test
+• Analyse : courbes d'apprentissage qui montrent un sur-apprentissage à partir de la 3e époque, et matrice de confusion qui révèle les confusions chat / chien, cerf / cheval et voiture / camion
+• Comparaison avec du transfer learning (MobileNetV2 pré-entraîné sur ImageNet, base gelée et seule la tête entraînée) : 34,8 %, plus lent et moins précis, parce que le modèle est conçu pour des images bien plus grandes que 32 × 32
+• Suivi des entraînements dans TensorBoard et début de recherche d'hyperparamètres (optimiseurs Adam, SGD et Adamax, taux d'apprentissage, nombre d'époques)
 
-Cas 3 — LSTM (NLP) :
-• Analyse de sentiment sur corpus de texte
-• Tokenisation, embedding, séquences variables
-• Architecture bidirectionnelle
+Partie 2 — Détection de fraude bancaire
 
-Stack technique : Python, TensorFlow, Keras, PyTorch, Scikit-Learn, Pandas, NumPy.`,
-    tags: ['Python', 'TensorFlow', 'PyTorch', 'Scikit-Learn', 'Keras', 'NLP'],
+• Jeu de données Kaggle de 284 807 transactions par carte bancaire, dont seulement 0,17 % de fraudes : un cas de classes très déséquilibrées
+• Analyse exploratoire : répartition des classes et distribution des montants selon le type de transaction
+• Préparation : normalisation du montant avec StandardScaler et découpage entraînement / test stratifié pour garder la même proportion de fraudes
+• Modèle Random Forest avec class_weight='balanced' pour compenser le déséquilibre
+• Résultat sur les fraudes : 96 % de précision, 74 % de rappel et un F1-score de 0,84
+• Réflexion sur les autres techniques possibles (sous-échantillonnage, XGBoost avec scale_pos_weight) et sur un usage en régression : prédire le montant habituel d'un client pour repérer les transactions anormales
+
+Partie 3 — Classification de texte avec un LSTM
+
+• Jeu de données de dépenses personnelles : à partir de la description d'une transaction, prédire sa catégorie
+• Pipeline de bout en bout dans le modèle : vectorisation du texte (TextVectorization), embedding de dimension 128, LSTM bidirectionnel, dropout et sortie softmax multi-classe
+• Résultat : 35 % de précision en validation, un score modeste qui s'explique par un jeu de données réduit et des descriptions très courtes
+
+Ce que j'en retiens
+
+• Savoir lire des courbes d'apprentissage et repérer le sur-apprentissage
+• Choisir la bonne métrique : sur des classes déséquilibrées, la précision globale ne veut rien dire, il faut regarder le rappel et le F1-score de la classe rare
+• Comprendre quand le transfer learning aide, et quand il n'est pas adapté aux données
+• Travailler à plusieurs sur des notebooks, avec un dépôt Git partagé
+
+Stack
+
+• Python, Jupyter, TensorFlow et Keras, Scikit-learn, Pandas, NumPy, Matplotlib, Seaborn, TensorBoard`,
+    tags: ['Python', 'TensorFlow', 'Keras', 'Scikit-Learn', 'Pandas', 'NLP'],
     category: 'other',
-    status: 'in-progress',
+    status: 'archived',
     githubUrl: 'https://github.com/YamiUtsukushi/Application_MachineLearning_DeepLearning',
     image: '/images/projects/ml-deep-learning.jpg',
-    year: 2024,
+    year: 2025,
     featured: true,
   },
 
